@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const handleRequestCredential = () => {
+export const handleRequestBankSummary = () => {
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!;
     const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI!);
     const scope = encodeURIComponent("https://www.googleapis.com/auth/gmail.readonly");
@@ -72,3 +72,5 @@ export const tokensToCheckTeleporter = [
     balance: 0,
   },*/
 ];
+
+

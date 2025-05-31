@@ -1,0 +1,203 @@
+Delivered-To: luciano.leonel.carreno@gmail.com
+Received: by 2002:a05:7508:3d8f:b0:8f:f142:9966 with SMTP id ek15csp1620898gbb;
+        Sat, 31 May 2025 00:03:44 -0700 (PDT)
+X-Received: by 2002:a17:907:9816:b0:ac6:f3f5:3aa5 with SMTP id a640c23a62f3a-adb3229ed95mr626944166b.16.1748675023930;
+        Sat, 31 May 2025 00:03:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748675023; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GBa59BJH6sVcSc2qAS5l/vWrJZWCnWCvDP/dSmth8s9hTIg0LgQ89qGVMen7AM7+b0
+         dD1/iiG5qHQZqBSkjNyP39MRjEeCvm55s1SPkMLJPSiidQinHOrjuGsSsL66oENPfNcr
+         BJDipa7npugF0Wz6oWZNlksc5qbeoJnFTkipGcHHNHoy15En2LiJraP1tm6ccxGi34IJ
+         p0uVaVBqSlV/oASEQspZT4CURDfin8Y1f5GwgmrFi6W/yuq4j8o5WnCEgnBolJGBcs1/
+         2mOaX5dHj2mUYXw7/4lEPHB6DKfZYPQNo7Nib7zshgfvteipviUu2q8ecbwSpf1aqWy6
+         rFTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:date:content-transfer-encoding:message-id:subject:to
+         :from:dkim-signature;
+        bh=MwOp1a3pKUYZvHWe3TqyzVLCbzF3zkHszFidG/S90H4=;
+        fh=XEeKWixsQdogAsvV4/g2cREeXXKABExtyIVpY/1gFr8=;
+        b=ZL9O7OJ1iBbRZ8sH9GOsxN2ImgURywORhIoRWlp5pGDgc+/XqulycodaC51HvDSsY/
+         g1A9PgEfvZ1IikblFkb6CCtrfXuq1SKgqV2bkyNwXPs653vYWzfcargwlEYU5p0PskAY
+         /S0Szc1Tz4q6UhFt34ZRZAXgsOKF3xbDWCRjGvYF39X0qGJPknjxDy4iJgu4r6p2ka2j
+         WCggAYOVyOqdIjfmL2dn6YfQ2GE48ZTTDRWNkXn/OxVAo8901QKdrXP9n7RVWhjSqp5I
+         cGZspuHYYMqqxQj8YU54DcxBFvbLjEvMTuLFgCNHGASM1sx6vazJrGKZYSWplW+PIvDJ
+         e7Ag==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OKccRAow;
+       spf=pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=carrenoluciano@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <carrenoluciano@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ada6add881esor291023666b.17.2025.05.31.00.03.43
+        for <luciano.leonel.carreno@gmail.com>
+        (Google Transport Security);
+        Sat, 31 May 2025 00:03:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OKccRAow;
+       spf=pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=carrenoluciano@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748675023; x=1749279823; dara=google.com;
+        h=mime-version:date:content-transfer-encoding:message-id:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwOp1a3pKUYZvHWe3TqyzVLCbzF3zkHszFidG/S90H4=;
+        b=OKccRAowAh+RScfB/2ivf+qEDE36opdYXiaf8vcIhyEIiywQyA/NpM4DVKLANvdCFW
+         RmIguPy7R0H6meBrrIz2UUOWtHrWzZkf84EkHjOf5BpgoetzF+JXLt9Yf9+IbVq7hatL
+         zrZDK24phORs8zkKm5EeQrcKsYRYCPLfh2YzbsrA4PiQPRcdKuiypJeS1JAOK843Ef+w
+         1VAG0vbPrBrF74YOd7vdLiqXiiqjWzV0m46IOJtgAcfYWo7OKfyLSJ9HBtBc7u5jL4We
+         G9wpYMJ9LoBPUsHL2puCKqdg9mlqxhuYk3E1j666mq0+EV/UTrvDURbwcsAQKHtZNkfk
+         5BqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748675023; x=1749279823;
+        h=mime-version:date:content-transfer-encoding:message-id:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwOp1a3pKUYZvHWe3TqyzVLCbzF3zkHszFidG/S90H4=;
+        b=Sx71f2TJL0opCKTVZVkNhywzI6kItfOIux3qJPv8gvFoYHAwMDC6WdxvZpRNlvPx+r
+         QvKQWfjxLuPu31nOzQgVtPITBSlHARFmwZ6IAcA6Ud8HX6jr1JdotEl7zmD1+SBnwYDB
+         LlUIgwy5S8gF3Ffb/3qJE6nyqni3dH1ia/Z0PdPv5Z0axk0bTDQ4iuD4Ia+h+70mg55e
+         KyqJEq5cl+Ls1ygSzxOQcQ61vsigAuXjFtAYImT49gZFlk6MLIhGntLOtsmX/JIrTqey
+         9HpXEeMUVLck/oua2tpV3QqlxyK9O9ew9GzSV3MwFRx58fM8Cj1ShKhckyZgvSeclMdV
+         2QIg==
+X-Gm-Message-State: AOJu0YzQAH/1L98jObqjOZ7anlxnYbvfMpZwDcuxEzA0nT55kc69T/z0
+	+8Qw3o7SAtcdN2GFf4eVhNHDh8QxOnhDY7lidOXwqROopYNxT56Nu96mniitLcqN9vc=
+X-Gm-Gg: ASbGncvDUFNyX1Sjs0u1ygXhcq6j2u5B7F5djbXt3adGnyh7J+HdR/vvKvI9b5ar9Oz
+	AFHT1vQgBrmlt144tjx8Hubhtgsy41nJEVGhlMImGE/TrrImpY5fnOcdQfx3xgIQt9TMp50oXzW
+	dZaitTzFWbdZmdxNNbtiP4HgQYkzcSffq59xwV4nZR6ieTU8hxKHDYQvDqymYHWXfZYYXpfP4Mz
+	W6D2FkUSkoEmM64twR3+lE1B7s4nnPPPyLEF/VlEpmq1AOcIxnPIoBy5jWuzD6QAge62rPoofdO
+	IYaYcxpkekG+iAiyGSbmPaUUhEweXwvKBM6qfJFFZCvcKT/YZn1HpdglW9ZtQzSVh+4EsImtxw=
+	=
+X-Google-Smtp-Source: AGHT+IF2AEMEVe4NhAds7mxMSfE1zUA8zdWvsPSjjIT4uhB6b1tsemmbY45oIhRivl2y9FPMXZ1RDg==
+X-Received: by 2002:a17:906:c148:b0:ad5:d491:c71e with SMTP id a640c23a62f3a-adb324518c2mr561884066b.57.1748675022715;
+        Sat, 31 May 2025 00:03:42 -0700 (PDT)
+Return-Path: <carrenoluciano@gmail.com>
+Received: from [127.0.0.1] ([195.113.187.136])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada6ad3a6ccsm444847066b.156.2025.05.31.00.03.41
+        for <luciano.leonel.carreno@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 May 2025 00:03:42 -0700 (PDT)
+From: carrenoluciano@gmail.com
+X-Google-Original-From: luciano.carreno@ramelax.com
+To: luciano.leonel.carreno@gmail.com
+Subject: Bank Summary
+Message-ID: <71594847-1413-1247-696c-4a005f3d39ba@ramelax.com>
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 31 May 2025 07:03:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+        <!DOCTYPE html>
+<html lang=3D"es">
+<head>
+<meta charset=3D"UTF-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<title>Banco Galicia</title>
+<style type=3D"text/css">
+div, p, a, li, td {
+    -webkit-text-size-adjust: none;
+}
+body {
+    margin: 0 !important;
+    padding: 0;
+    min-width: 100%;
+    background-color: #ffffff;
+}
+table {
+    border-spacing: 0;
+    font-family: "Arial", Helvetica, =
+sans-serif;
+    color: #000000;
+    font-weight: normal;
+}
+td {
+    padding: 0;
+}
+img {
+    border: 0;
+}
+a {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body style=3D"margin:0; padding:0; font-family:'Trebuchet MS', Arial, =
+Helvetica, sans-serif; font-weight:normal;">
+
+<table width=3D"100%" =
+bgcolor=3D"#ffffff" style=3D"border-collapse:collapse;">
+  <tr>
+    <td>
+      <table width=3D"550" align=3D"center" style=3D"margin:auto; =
+max-width:550px;">
+        <tr>
+          <td style=3D"padding:20px; =
+text-align:center;">
+            <img src=3D"https://www.galicia.=
+ar/content/dam/galicia/banco-galicia/personas/canales/emails/avatar-header-=
+Galicia.png" alt=3D"Banco Galicia" width=3D"60" height=3D"60">
+            <h2 style=3D"color:#000000;">The summary of transactions in =
+your bank account is now ready.</h2>
+            <p =
+style=3D"font-size:18px; color:#000000;">Transaction in dollars: USD =
+4243</p>
+            <p style=3D"margin:20px 0;">
+              <a =
+href=3D"https://www.eresumen.com.ar/msc/descargar/m/00070525-5618-4d5a-b972=
+-7c97b84ea7f7Zde06262c2be85c95563375c4c6f5cbf9a8cea31c:0" =
+style=3D"background-color:#fa6400; color:#ffffff; padding:12px 24px; =
+border-radius:8px; font-size:18px; text-decoration:none; =
+display:inline-block;">View summary</a>
+            </p>
+            <p style=3D"font-size:16px; color:#000000;">You can also find =
+it in Online Banking or the Galicia App and download it whenever you need =
+=F0=9F=98=89</p>
+            <hr style=3D"margin:20px 0; border:none; =
+border-top:2px solid #fa6400;">
+            <p style=3D"font-size:12px; =
+color:#000000; font-weight:bold;">This email was sent automatically. Please=
+ do not reply.</p>
+            <p style=3D"font-size:11px; color:#000000; =
+text-align:justify;">
+              You have the right to request that we =
+fully or partially remove or block you from our database by submitting a =
+formal request at any of our branches.<br><br>
+              Here are two =
+important articles from the Personal Data Protection Law (No. 25326):<br>
+              1- Article 27, subsection 3: =E2=80=9CThe data subject may at=
+ any time request the removal or blocking of their name from the databases =
+referred to in this article.=E2=80=9D<br>
+              2- Article 27 - =
+Annex I - Decree 1558/01: =E2=80=9CIn any advertising communication made by=
+ mail, telephone, email, Internet, or other remote means, it must be =
+expressly and clearly stated that the data subject has the right to request=
+ the full or partial removal or blocking of their name from the database. =
+Upon the data subject=E2=80=99s request, the name of the data controller or=
+ user who provided the information must be disclosed.=E2=80=9D<br><br>
+              Security reminder: We will never contact you to validate =
+personal information such as ID number, access codes, coordinates card =
+numbers, or account numbers. If someone contacts you with this intention, =
+you can call 0810-444-6500 so we can assist you. Any personal information =
+that may be collected is used in accordance with the Privacy Policy, which =
+you can review at:
+              <a href=3D"https://www.galicia.=
+ar/personas/politica-de-privacidad" target=3D"_blank">https://www.galicia.=
+ar/personas/politica-de-privacidad</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+     =20

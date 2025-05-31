@@ -11,7 +11,8 @@ import proverSpec from "@/contracts/SimpleTeleportProver.json";
 import verifierSpec from "@/contracts/SimpleTeleportVerifier.json";
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import type { Abi } from 'viem';
-import { Zap, ArrowRight, SkipForward, CheckCircle } from "lucide-react";
+import { Zap, ArrowRight, SkipForward, CheckCircle, ShieldCheck } from "lucide-react";
+import { RedirectFromForm } from "@/components/Redirections";
 
 
 
@@ -88,6 +89,7 @@ export default function TeleporterPage() {
 
   return (
   <div className="min-h-screen p-2 max-w-5xl mx-auto overflow-auto space-y-4">
+    <RedirectFromForm />
     <Breadcrumb active="teleporter" />
 
     <div className="group p-6 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20 mb-6">
@@ -112,36 +114,43 @@ export default function TeleporterPage() {
             </div>
           ) : (
              <button
-              onClick={handleTeleportProof}
-              disabled={loading || !!crossChainBalance}
-              className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
-                (!loading && !crossChainBalance)
-                  ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
-                  : 'bg-gray-300 cursor-not-allowed !text-gray-800'
-              }`}
-            >
-              {loading ? `Generating Proof${".".repeat(dotCount)}` : "Generate Cross-Chain Proof"}
-            </button>
+                onClick={handleTeleportProof}
+                disabled={loading || !!crossChainBalance}
+                className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
+                  (!loading && !crossChainBalance)
+                    ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                    : 'bg-gray-300 cursor-not-allowed !text-gray-800'
+                }`}
+              >
+                {loading
+                  ? `Generating Proof${".".repeat(dotCount)}`
+                  : (
+                    <>
+                      Generate Cross-Chain Proof
+                      <ShieldCheck className="inline-block w-4 h-4 ml-2" />
+                    </>
+                  )
+                }
+              </button>
           )}
-
-      
         </div>
       </div>
     </div>
 
     <div className="flex justify-between mt-4">
-      <button
+     <button
         disabled={!!crossChainBalance}
-        onClick={() => router.replace("/email")}
+        onClick={() => router.replace("/identity")}
         className={`px-6 py-2 rounded-lg font-semibold text-gray-800 bg-gray-300 hover:bg-gray-400 transition-all ${
           !!crossChainBalance ? 'cursor-not-allowed' : 'cursor-pointer'
         }`}
       >
         Skip
+        <SkipForward className="inline-block w-4 h-4 ml-2" />
       </button>
 
       <button
-        onClick={() => router.replace("/email")}
+        onClick={() => router.replace("/identity")}
         disabled={!crossChainBalance || crossChainBalance === BigInt(0)}
         className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
           crossChainBalance && crossChainBalance !== BigInt(0)
@@ -150,6 +159,7 @@ export default function TeleporterPage() {
         }`}
       >
         Next
+        <ArrowRight className="inline-block w-4 h-4 ml-2" />
       </button>
     </div>
   </div>

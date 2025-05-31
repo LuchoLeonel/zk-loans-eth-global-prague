@@ -124,8 +124,8 @@
 .scrollbar-thin {
   scrollbar-width: thin;
 }
-.scrollbar-thumb-purple-500 {
-  scrollbar-color: #a855f7 transparent;
+.scrollbar-thumb-blue-500 {
+  scrollbar-color: #3b82f6 transparent;
 }
 
 .scrollbar::-webkit-scrollbar {

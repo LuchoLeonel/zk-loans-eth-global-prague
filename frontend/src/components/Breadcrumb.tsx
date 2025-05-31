@@ -1,10 +1,9 @@
 import React from "react";
 
 const steps = [
+  "email-proof",
   "time-travel",
   "teleporter",
-  "email-proof",
-  "web-proof",
   "identity",
   "claim-loan",
 ];

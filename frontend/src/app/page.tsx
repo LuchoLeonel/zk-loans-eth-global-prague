@@ -143,7 +143,7 @@ export default function ZKLoansLanding() {
                   </span>
                 </h1>
                 </div>
-                <p className="text-xl text-blue-100 leading-relaxed max-w-lg">
+                <p className="text-xl text-blue-100 leading-relaxed max-w-xl">
                   Experience true financial freedom with zero-knowledge privacy. No collateralized assets, no manual credit checks, no exposed personal data.
                 </p>
               </div>
@@ -156,14 +156,6 @@ export default function ZKLoansLanding() {
                 >
                   Get a Loan
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  disabled={true}
-                  className="border-blue-400/50 text-blue-200 hover:bg-blue-500/10 hover:border-blue-400 px-8 py-6 text-lg backdrop-blur-sm"
-                >
-                  Explore Docs
                 </Button>
               </div>
 
@@ -193,7 +185,7 @@ export default function ZKLoansLanding() {
             {/* Right Column - Features */}
             <div className="space-y-6">
 
-              <div className="group p-6 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20">
+              <div className="group p-4 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20">
                 <div className="flex items-start space-x-5">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 rounded-xl flex items-center justify-center group-hover:from-blue-500/50 group-hover:to-cyan-400/50 transition-all duration-300">
                     <Lock className="w-6 h-6 text-blue-300" />
@@ -208,7 +200,7 @@ export default function ZKLoansLanding() {
                 </div>
               </div>
 
-              <div className="group p-6 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20">
+              <div className="group p-4 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20">
                 <div className="flex items-start space-x-5">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 rounded-xl flex items-center justify-center group-hover:from-blue-500/50 group-hover:to-cyan-400/50 transition-all duration-300">
                     <Shield className="w-6 h-6 text-blue-300" />
@@ -222,7 +214,7 @@ export default function ZKLoansLanding() {
                 </div>
               </div>
 
-              <div className="group p-6 rounded-2xl bg-gradient-to-r from-cyan-900/30 to-blue-900/20 border border-cyan-500/30 backdrop-blur-xl hover:border-cyan-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/20">
+              <div className="group p-4 rounded-2xl bg-gradient-to-r from-cyan-900/30 to-blue-900/20 border border-cyan-500/30 backdrop-blur-xl hover:border-cyan-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/20">
                 <div className="flex items-start space-x-5">
                   <div className="w-12 h-12 bg-gradient-to-r from-cyan-500/30 to-blue-400/30 rounded-xl flex items-center justify-center group-hover:from-cyan-500/50 group-hover:to-blue-400/50 transition-all duration-300">
                     <Zap className="w-6 h-6 text-cyan-300" />

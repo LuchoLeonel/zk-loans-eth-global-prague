@@ -44,21 +44,6 @@ const Header = () => {
             <Image src="/logo-transparent.png" width={140} height={100} alt="logo" />
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-blue-200 hover:text-white transition-colors relative group">
-              Protocol
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300" />
-            </a>
-            <a href="#" className="text-blue-200 hover:text-white transition-colors relative group">
-              Docs
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300" />
-            </a>
-            <a href="#" className="text-blue-200 hover:text-white transition-colors relative group">
-              Security
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300" />
-            </a>
-          </nav>
-
           <div className="flex items-center space-x-4 px-4">
             <DynamicWidget />
           </div>

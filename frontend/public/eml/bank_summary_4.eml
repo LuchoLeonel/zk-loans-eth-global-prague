@@ -1,0 +1,85 @@
+Delivered-To: luciano.leonel.carreno@gmail.com
+Received: by 2002:a05:7508:3d8f:b0:8f:f142:9966 with SMTP id ek15csp1599990gbb;
+        Fri, 30 May 2025 22:53:28 -0700 (PDT)
+X-Received: by 2002:a17:903:234f:b0:234:98eb:8eda with SMTP id d9443c01a7336-2355f762d1amr15257545ad.28.1748670808401;
+        Fri, 30 May 2025 22:53:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748670808; cv=none;
+        d=google.com; s=arc-20240605;
+        b=TAuUyAcAHHYbrD+PJOil6qMo2fMKiOLafKUrmOU9n1pdXDiak1TJ6u8G1KZPQrhKUe
+         0EDUFGmGXt6D8OQJeJhpJ4lrJ0fX+NFLFw/WpN8sx8NvEc+dndp5bYDFAGegz1iJHcS/
+         BR3hwatqnfNizvurFw+TIX687bTpwDiL/kQuEuSPhO6cViiig7lk2nQMrOdDNRyPAlZu
+         BNkqO/lmSDMQBlG8xu73b6vszU5s36VxX4iRGVahJi8oc7eEidPHTb4Idq0kM0qE5t3g
+         ZBBP2kEaHBUdOl/xMnTEGzppe3e08tMM6Fyi2UBTX7GTZbKCmuMfw2TW6KeTBwCSUWLX
+         F/ZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=uJHd+QL8qmvPaylNgSPsshnbu/VE6xvR9HQg5QRnAU8=;
+        fh=XEeKWixsQdogAsvV4/g2cREeXXKABExtyIVpY/1gFr8=;
+        b=Qw7o4w8XM6pOXqscPQv9nWHNTkJtcpTpe5kar5bJL61anvBfx8xR/5TKQDroSIz8OY
+         oWKEvSEiMmoYxGDXZiAF7Pj1GwQF+E4kg9iORPyRc5AYDGumM8EVYWqPe5igwrEZIQT1
+         UYGgUabsr56da38whLCUaXTftyBQlA67OBztgBk9kAxkhaEss+eDmg0mGInV4sjJTWNG
+         3GAl8GwnMsulpIlJJx6qdaLKP7NNX1b295ZjntpfEMQexxrLwP0aR7H7duloaR2uD/ql
+         dxDCJ5P6dzEzsOAdeu890dCnitpsKDK0B+FNNj+tmeWmdVUaluc7QYfJLLQ3Ipa8ZYwn
+         30DA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=lFMj1J4Q;
+       spf=pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=carrenoluciano@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <carrenoluciano@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d9443c01a7336-23506a31ddbsor35216365ad.2.2025.05.30.22.53.28
+        for <luciano.leonel.carreno@gmail.com>
+        (Google Transport Security);
+        Fri, 30 May 2025 22:53:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=lFMj1J4Q;
+       spf=pass (google.com: domain of carrenoluciano@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=carrenoluciano@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748670808; x=1749275608; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uJHd+QL8qmvPaylNgSPsshnbu/VE6xvR9HQg5QRnAU8=;
+        b=lFMj1J4QLqDG9sgqdQMcubB7cuf54hUW1zHMgIsF7OAH2pMPLu+OQEpuRO191pBjP5
+         DQP+D5C2XLGAXFIqqziu79fobI1k24apEioX3TAARHcmVqG4rWu1Jks5hAQXRDl2YIQI
+         9Ge3bqQCIQPhkc5Jq7IqayvY9TXQnC0wchXu/BD77jcDVbfQiHVEKSwkILuo/655tjcD
+         5mjjnN4WtAJ6R11A6hNyrZ/gyc/iuCedROWrargKnMQmAtd3Hj36rEtJpfw4IHeX94k1
+         TqnqJ/rXT/xmoayjpSeWaDWO+60Z6LpCbDzOKe8h0pOzypDFrHrxkGGhsDpyBM4DoIRI
+         LClg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748670808; x=1749275608;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uJHd+QL8qmvPaylNgSPsshnbu/VE6xvR9HQg5QRnAU8=;
+        b=jsH8CJM4d6PQmMY5gdIceK7yN+V/N/a+K0kFJlqq6FvQTWR4Mz1h7jI5B3bnAeiGfo
+         S2B2ozVAsZxRBIKoi7rptyHNbDquJrT1vFXUFvBFD/IC5eaOX8ihDYhovXawd86euhSR
+         bFG0mURgOsoHpqJW64D80wXsSSv7SvR9jMnTzHaSPJI8JqTJBSbK0bW/s88gebDeS0rE
+         Hyfl/Vj6w3sJ82XpFRYtWw/E6kYOxIMe4RJ4nBk5RqEhvN5b5i7FPhSwjZa3ibDtv4Ku
+         3fIM5hZgEafeVl95zcsQ38yWtsLcdwzfNNabqVXTtIrc0FMSQP3NNWBuU00hIXEyD5P5
+         K65A==
+X-Gm-Message-State: AOJu0Yxrz7MtpnsvF7thLUV7McxdJO43Zhi84tjyS2iCgIx204qanaOD
+	dv9RDB6I1IxPvy8V9s+kVCMLi9bI9KpgXdnKqelQdG0eIJis6uTy4tnl+OJhmpKcUvmC/VzBbAE
+	dPTx2qpf9gkcmBsbulT+AVPf3kB1pMEHfhw1RHfv6og==
+X-Gm-Gg: ASbGnctmq8lYrKOfU4tWa1LdvO+R2uZ9rPjI4djMshh8HKmLdbM+WL6cyRXc9h6/+yA
+	StYw4pucfZAyw7yu2jv9+1od7GPioEiRsLBRnUskZpK67akPCC1pwOt8F5yvzobDYhfg9jYUZRz
+	e3p4LeEHJSpKg++DAK0hJygY4jOIHEExOnzi8=
+X-Google-Smtp-Source: AGHT+IGfBsU98tB6k/Vq5gnG2w0F2SRj5BM85jFj3DmV6RdWEKJn5iQvDFqxl5w5L0XEMqGYLw5NJOwXj3hBMIgURXs=
+X-Received: by 2002:a17:903:98f:b0:234:8f5d:e3a1 with SMTP id
+ d9443c01a7336-2355f6cb5a4mr15804875ad.11.1748670807781; Fri, 30 May 2025
+ 22:53:27 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Luciano_Carre=C3=B1o?= <carrenoluciano@gmail.com>
+Date: Sat, 31 May 2025 02:52:51 -0300
+X-Gm-Features: AX0GCFsu-IiUYwnoG4ULrxZGHV6YfNJmb18KUrHt8N3Z5beT3n-RkYB0cowUmIo
+Message-ID: <CAP44jmaKh9Cb3o9x7CMjTn5QA+YSG1yupO+r8uYH07nQxBPayw@mail.gmail.com>
+Subject: Bank Summary
+To: luciano.leonel.carreno@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+
+The summary of transactions in your bank account is now ready.
+
+Transaction in dollars: USD4243
