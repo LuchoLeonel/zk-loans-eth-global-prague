@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
         : []
     },
     rskTestnet: {
-      url: "https://rpc.testnet.rootstock.io/YOUR_APIKEY",
+      url: "https://rpc.testnet.rootstock.io/TnukxR92yfQ6D2xnCa5jcEBkqBRZaK-T",
       chainId: 31,
       gasPrice: 60000000,
       accounts: process.env.ROOTSTOCK_TESTNET_PRIVATE_KEY
