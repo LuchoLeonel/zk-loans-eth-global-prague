@@ -11,7 +11,7 @@ import Background from "@/components/Background";
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Zk Loans",
+  title: "ZK Loans",
   description:
     "ZK Loans is a zero-knowledge-powered platform for uncollateralized crypto lending. Prove your creditworthiness privately, borrow instantly, no collateral required.",
   icons: {

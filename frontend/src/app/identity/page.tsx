@@ -9,6 +9,7 @@ import { isEmpty } from 'lodash';
 import { User, CheckCircle, ShieldCheck, SkipForward, ArrowRight } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 import { RedirectFromForm } from '@/components/Redirections';
+import { keccak256, toBytes } from 'viem';
 
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
 
@@ -21,7 +22,7 @@ export default function ZKPassportPage() {
   const zkpassportRef = useRef<ZKPassport | null>(null);
   const proofRef = useRef<any | null>(null);
 
-  const { proofs: zkEmailProofs } = useProofStore();
+  const { identityHash, setIdentityHash } = useProofStore.getState();
   const router = useRouter();
 
   useEffect(() => {
@@ -94,7 +95,10 @@ export default function ZKPassportPage() {
             };
 
           
-            //router.push('/claim');
+            const input = `${passportData.documentType}:${passportData.documentNumber}`;
+            const hash = keccak256(toBytes(input));
+            setIdentityHash(hash);
+            setLoading(false);
           } catch (err) {
             console.error('❌ Error al enviar datos al backend:', err);
             setLoading(false);
@@ -117,7 +121,7 @@ export default function ZKPassportPage() {
     };
 
     runZkPassport();
-  }, [zkEmailProofs, router]);
+  }, [router]);
 
  return (
   <div className="min-h-screen p-2 max-w-5xl mx-auto flex flex-col">
@@ -141,22 +145,35 @@ export default function ZKPassportPage() {
       </div>
 
       <div>
-        {loading ? (
-          <p className="text-blue-300 font-semibold">
-            ⏳ Processing. Please wait{dots}
-            {Array(3 - dots.length).fill('.').map((d, i) => (
-              <span key={i} className="invisible">{d}</span>
-            ))}
-          </p>
-        ) : url ? (
-          <div className="flex justify-center ">
-            <QRCode className="p-2 bg-white" value={url} size={256} />
-          </div>
-        ) : (
-          <p className="text-gray-300">Loading request...</p>
-        )}
+          {loading ? (
+            <p className="text-blue-300 font-semibold">
+              ⏳ Processing. Please wait{dots}
+              {Array(3 - dots.length).fill('.').map((d, i) => (
+                <span key={i} className="invisible">{d}</span>
+              ))}
+            </p>
+          ) : !identityHash && url ? (
+            <div className="flex justify-center">
+              <QRCode className="p-2 bg-white" value={url} size={256} />
+            </div>
+          ) : (
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => router.replace("/claim-loan")}
+                disabled={!identityHash}
+                className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
+                  identityHash
+                    ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                    : 'bg-gray-300 cursor-not-allowed !text-gray-400'
+                }`}
+              >
+                Claim
+                <ArrowRight className="inline-block w-4 h-4 ml-2" />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
   </div>
 );
 

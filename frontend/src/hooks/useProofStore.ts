@@ -1,17 +1,36 @@
 import { create } from 'zustand';
 
 type ProofStore = {
-  proofs: any[];
-  ZKCredential: any | null;
-  setProofs: (proofs: any[]) => void;
-  resetProofs: () => void;
-  setZKCredential: (credential: any) => void;
+  emailProof: any | null;
+  timeTravelProof: any | null;
+  teleportProof: any | null;
+  identityHash: string | null;
+
+  setEmailProof: (proof: any) => void;
+  setTimeTravelProof: (proof: any) => void;
+  setTeleportProof: (proof: any) => void;
+  setIdentityHash: (hash: string) => void;
+
+  resetAll: () => void;
 };
 
 export const useProofStore = create<ProofStore>((set) => ({
-  proofs: [],
+  emailProof: null,
+  timeTravelProof: null,
+  teleportProof: null,
+  identityHash: null,
   ZKCredential: null,
-  setProofs: (proofs) => set({ proofs }),
-  resetProofs: () => set({ proofs: [], ZKCredential: null }),
-  setZKCredential: (ZKCredential) => set({ ZKCredential }),
+
+  setEmailProof: (proof) => set({ emailProof: proof }),
+  setTimeTravelProof: (proof) => set({ timeTravelProof: proof }),
+  setTeleportProof: (proof) => set({ teleportProof: proof }),
+  setIdentityHash: (hash) => set({ identityHash: hash }),
+
+  resetAll: () =>
+    set({
+      emailProof: null,
+      timeTravelProof: null,
+      teleportProof: null,
+      identityHash: null,
+    }),
 }));

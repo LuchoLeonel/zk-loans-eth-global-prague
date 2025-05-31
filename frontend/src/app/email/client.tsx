@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useProofStore } from "@/hooks/useProofStore";
 import pLimit from "p-limit";
 import { isEmpty } from "lodash";
-import { Mail } from 'lucide-react';
+import { Mail, ArrowRight } from 'lucide-react';
 import Breadcrumb from "@/components/Breadcrumb";
 import { vlayerClient } from "@/lib/vlayerTeleporterClient";
 import proverSpec from "@/contracts/BankSummaryProver.json";
@@ -65,7 +65,7 @@ const EmailTable = ({ emails, handleEmailProof, status }: any) => {
   };
 
   const handleSkip = () => {
-    router.push("/identity");
+    router.push("/time-travel");
   };
 
   return (
@@ -157,35 +157,50 @@ const EmailTable = ({ emails, handleEmailProof, status }: any) => {
           Skip
         </button>
 
-        <button
-          onClick={handleNext}
-          disabled={status === "generating" || selectedEmails.length === 0}
-          className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
-            status === "generating" || selectedEmails.length === 0
-              ? 'bg-gray-300 cursor-not-allowed !text-gray-800'
-              : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
-          }`}
-        >
-          <span className="inline-flex items-center min-w-[200px] justify-center">
-            {status === "generating"
-              ? (
-                <>
-                  Generating Email Proof
-                  <span className="inline-block w-[6px] text-left">
-                    {".".repeat(dotCount)}{" ".repeat(3 - dotCount)}
-                  </span>
-                  <span className="w-4 h-4 ml-2 inline-block" />
-                </>
-              )
-              : (
-                <>
-                  Generate Email Proof
-                  <Mail className="inline-block w-4 h-4 ml-2" />
-                </>
-              )
-            }
-          </span>
-        </button>
+
+        {status === "finish" ?
+            (
+              <button
+                onClick={() => router.replace("/time-travel")}
+                className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${'bg-blue-600 hover:bg-blue-700 cursor-pointer'}`}
+              >
+                Next
+                <ArrowRight className="inline-block w-4 h-4 ml-2" />
+              </button>
+            ) 
+            :
+            (
+            <button
+              onClick={handleNext}
+              disabled={status === "generating" || selectedEmails.length === 0}
+              className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
+                status === "generating" || selectedEmails.length === 0
+                  ? 'bg-gray-300 cursor-not-allowed !text-gray-800'
+                  : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+              }`}
+            >
+              <span className="inline-flex items-center min-w-[200px] justify-center">
+                {status === "generating"
+                  ? (
+                    <>
+                      Generating Email Proof
+                      <span className="inline-block w-[6px] text-left">
+                        {".".repeat(dotCount)}{" ".repeat(3 - dotCount)}
+                      </span>
+                      <span className="w-4 h-4 ml-2 inline-block" />
+                    </>
+                  )
+                  : 
+                  (
+                    <>
+                      Generate Email Proof
+                      <Mail className="inline-block w-4 h-4 ml-2" />
+                    </>
+                  )
+                }
+              </span>
+            </button>
+            )}
       </div>
     </div>
   );
@@ -195,7 +210,7 @@ export default function InboxPage() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
   const router = useRouter();
-  const { proofs, setProofs } = useProofStore();
+  const { setEmailProof } = useProofStore.getState();
   const [dotCount, setDotCount] = useState(0);
   const [emails, setEmails] = useState<any[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "generating" | "finish" | "error">("loading");
@@ -298,7 +313,6 @@ export default function InboxPage() {
         throw new Error("Prover address is not set in environment variables");
       }
 
-      console.log("1");
       const object = {
         mimeEmail: eml.emlContent,
         dnsResolverUrl: "https://test-dns.vlayer.xyz/dns-query",
@@ -306,7 +320,6 @@ export default function InboxPage() {
       }
       const unverifiedEmail = await preverifyEmail(object);
      
-      console.log("3");
       const proofHash = await vlayerClient.prove({
         address: proverAddress as `0x${string}`,
         proverAbi: proverSpec.abi as Abi,
@@ -325,10 +338,8 @@ export default function InboxPage() {
       console.log("✅ Proof result:", result);
 
       // Guardar en tu store, redirigir, etc.
-      setProofs(result);
-
+      setEmailProof(result);
       setStatus("finish");
-
   };
 
 

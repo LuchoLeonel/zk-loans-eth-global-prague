@@ -18,7 +18,7 @@ import { RedirectFromForm } from "@/components/Redirections";
 
 export default function TeleporterPage() {
   const router = useRouter();
-  const { proofs, setProofs } = useProofStore();
+  const { setTeleportProof } = useProofStore.getState();
   const [dotCount, setDotCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [crossChainBalance, setCrossChainBalance] = useState(null);
@@ -61,7 +61,6 @@ export default function TeleporterPage() {
       setCrossChainBalance(totalBalance);
       console.log("✅ Total cross-chain balance:", totalBalance.toString());
 
-
       return result;
     } catch (error) {
       console.error("❌ Error in vlayerClient.prove:", error);
@@ -78,7 +77,7 @@ export default function TeleporterPage() {
     try {
       setLoading(true);
       const result: any = await callTeleportProver(tokensToCheckTeleporter);
-      setProofs(result); // guarda el resultado en tu proof store
+      setTeleportProof(result);
       console.log("✅ Proof result saved to store:", result);
     } catch (error) {
       console.error("❌ Error generating proof:", error);
@@ -98,13 +97,11 @@ export default function TeleporterPage() {
           <Zap className="w-6 h-6 text-blue-300" />
         </div>
        <div className="flex-1 max-w-xl">
-          <h1 className="text-2xl font-bold text-white mb-2">Teleporter Checkpoint</h1>
+          <h1 className="text-2xl font-bold text-white mb-2">Teleporter</h1>
           <p className="text-purple-200 text-sm mb-4">
             Use this section to <strong>teleport across chains</strong> and generate a <strong>cross-chain balance proof</strong> for your address.
             <br /><br />
             We’ll collect the balances of your tokens on multiple chains and sum them up to know how much total value you hold across all networks.
-            <br /><br />
-            Click the button below to generate your proof and unlock the next step.
           </p>
 
           {crossChainBalance ? (

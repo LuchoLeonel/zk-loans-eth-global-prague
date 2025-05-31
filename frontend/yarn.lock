@@ -3582,7 +3582,7 @@
     "@zkpassport/utils" "^0.10.1"
     debug "^4.4.0"
 
-"@zkpassport/sdk@^0.4.4":
+"@zkpassport/sdk@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@zkpassport/sdk/-/sdk-0.4.3.tgz#c0942169081c4172c921e92897becbe2110e949f"
   integrity sha512-gWTtPYx0GGaqyzucc64gAKjVNLM5GHh3gv9ejpvTN2nNLq5MMmh37zlgf8d0o2OQW32D6bX0QBQtxE+mMjgHXw==
