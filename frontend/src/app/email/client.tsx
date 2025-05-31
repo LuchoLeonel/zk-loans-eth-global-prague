@@ -307,39 +307,43 @@ export default function InboxPage() {
 
   const handleEmailProof = async (eml: any) => {
       setStatus("generating");
-      const proverAddress = process.env.NEXT_PUBLIC_EMAIL_PROVER_ADDRESS;
+      try {   
+        const proverAddress = process.env.NEXT_PUBLIC_EMAIL_PROVER_ADDRESS;
 
-      if (!proverAddress) {
-        throw new Error("Prover address is not set in environment variables");
+        if (!proverAddress) {
+          throw new Error("Prover address is not set in environment variables");
+        }
+
+        const object = {
+          mimeEmail: eml.emlContent,
+          dnsResolverUrl: "https://test-dns.vlayer.xyz/dns-query",
+          token: process.env.NEXT_PUBLIC_VLAYER_API_TOKEN,
+        }
+        const unverifiedEmail = await preverifyEmail(object);
+      
+        const proofHash = await vlayerClient.prove({
+          address: proverAddress as `0x${string}`,
+          proverAbi: proverSpec.abi as Abi,
+          functionName: "main",
+          args: [unverifiedEmail],
+          chainId: 11155111, // por ejemplo Sepolia
+          gasLimit: 1_000_000,
+        });
+
+        console.log("Proof hash:", proofHash);
+        const result = await vlayerClient.waitForProvingResult({
+          hash: proofHash,
+          numberOfRetries: 100,
+          sleepDuration: 2000, 
+        });
+        console.log("✅ Proof result:", result);
+
+        // Guardar en tu store, redirigir, etc.
+        setEmailProof(result);
+        setStatus("finish");
+      } catch {
+        setStatus("idle")
       }
-
-      const object = {
-        mimeEmail: eml.emlContent,
-        dnsResolverUrl: "https://test-dns.vlayer.xyz/dns-query",
-        token: process.env.NEXT_PUBLIC_VLAYER_API_TOKEN,
-      }
-      const unverifiedEmail = await preverifyEmail(object);
-     
-      const proofHash = await vlayerClient.prove({
-        address: proverAddress as `0x${string}`,
-        proverAbi: proverSpec.abi as Abi,
-        functionName: "main",
-        args: [unverifiedEmail],
-        chainId: 11155111, // por ejemplo Sepolia
-        gasLimit: 1_000_000,
-      });
-
-      console.log("Proof hash:", proofHash);
-      const result = await vlayerClient.waitForProvingResult({
-        hash: proofHash,
-        numberOfRetries: 100,
-        sleepDuration: 2000, 
-      });
-      console.log("✅ Proof result:", result);
-
-      // Guardar en tu store, redirigir, etc.
-      setEmailProof(result);
-      setStatus("finish");
   };
 
 

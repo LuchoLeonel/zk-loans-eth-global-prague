@@ -5,6 +5,7 @@ const steps = [
   "time-travel",
   "teleporter",
   "identity",
+  "scoring",
   "claim-loan",
 ];
 
