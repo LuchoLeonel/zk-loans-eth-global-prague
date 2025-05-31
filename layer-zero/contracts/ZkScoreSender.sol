@@ -5,10 +5,66 @@ import { OApp, MessagingFee, Origin } from "@layerzerolabs/oapp-evm/contracts/oa
 import { MessagingReceipt } from "@layerzerolabs/oapp-evm/contracts/oapp/OAppSender.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
+interface IVerifier {
+    function claim(
+        Proof calldata proof,
+        address claimer,
+        uint256 average
+    ) external;
+}
+
+struct Seal {
+    bytes32 dummy;
+}
+
+struct CallAssumptions {
+    bytes32 dummy;
+}
+
+struct Proof {
+    Seal seal;
+    bytes32 callGuestId;
+    uint256 length;
+    CallAssumptions callAssumptions;
+}
+
 contract ZkScoreSender is Ownable, OApp{
+    IVerifier public verifier;
+
+    struct ScoreData {
+        uint256 score;
+        uint256 probability;
+        uint256 maxLoan;
+    }
+
+    mapping(address => ScoreData) public userScores;
+
+    event ScoreSubmitted(address indexed claimer, uint256 score, uint256 probability, uint256 maxLoan);
+    event ScoreSent(address indexed user, uint256 score, uint256 probability, uint256 maxLoan, uint32 dstEid);
+
     constructor(address _endpoint, address _delegate)
         OApp(_endpoint, _delegate)
         Ownable(_delegate) {}
+
+
+    function submitScore(
+            uint256 score,
+            uint256 probability,
+            uint256 maxLoan,
+            Proof calldata proof,
+            address claimer,
+            uint256 average
+        ) external {
+            verifier.claim(proof, claimer, average);
+
+            userScores[claimer] = ScoreData({
+                score: score,
+                probability: probability,
+                maxLoan: maxLoan
+            });
+
+            emit ScoreSubmitted(claimer, score, probability, maxLoan);
+        }
 
     /// @notice Send (user, score) to Rootstock
     function sendScore(
