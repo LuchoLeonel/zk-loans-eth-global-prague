@@ -1,0 +1,612 @@
+Delivered-To: carrenoluciano@gmail.com
+Received: by 2002:a05:7022:24a2:b0:9c:9be8:88e8 with SMTP id cq34csp1127972dlb;
+        Fri, 2 May 2025 15:26:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG7iooTMUso4t9oyjP196WWINWLyLcz/U2YE06pH73iHxS1ixacFQzG0r9Di3atAT2A+RsD
+X-Received: by 2002:a05:620a:4726:b0:7c9:5ec2:a82c with SMTP id af79cd13be357-7cad5ba3f6cmr754254785a.53.1746224775181;
+        Fri, 02 May 2025 15:26:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746224775; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z813WrZ9Fh+cA4qBAT9kqW9ci8q27PcpoMHPdQ5AZTyLPi2RQBS4/UMSYPHBML21Wi
+         s/tH8m3WM6XAW2PCwpYWCmkGbUiNKWmF0TP+gPsSxIcTGap/zC14Xu0ZDGE1bogC4PTL
+         gPRTqiga4nps49sdj137jFajo8+WGD8FJiJ+aJ0CT8PHTEsCsE02eCuL5XTkRmwGSw3l
+         3jnKkBkfZbqa62Lrz+gNB4SR/2UQ7K62v8XquH4Sw13UTb4yuT0cK8w1ko+tBogFkVGC
+         IHcL4w/PAH4jvku3AxuK3h7DZQqsFZGP0eiSSs/DzG/fDYSqvOj2otYBtceVoKsbm2Vr
+         5Ieg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:reply-to:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-signature;
+        bh=lDk0s/OrOQYZoQuFtoJuAdC8HJ6MYyyvdqLBUaD//yc=;
+        fh=v7/9KhZR8DyZMBGkZ66znSKPoWcRBCi2DfPuwVTGpm0=;
+        b=HyKuYHxNjTVeU2NeL38hJPmZdXr0tgYi+AF20PWYRldrtJLmgSDa6pb0j5oeJVO0jx
+         lRqcNLx32ZZlXeg9TBtckuEsWXykzrIqfNV1QQtMvFUIf6ywh7PCdMzLEpJlge0Evg/+
+         2jTqQ7pbH6u4eCypGIoNWE+Lq6LSW3SwYoiX4Np1GcmekntVV+YABETd9cxluuMS0Jjl
+         kiTsphSO4kwkYrTVWIxBnmukKWilM9ZQOVqi7tZxY8tVOrglPVleQXJfVX0zVJ+/2AwG
+         11F8rBJSt3Z2sPJ/RWDtREJQLIyJ9n2APE4uH7kl51elz1ZhHi0LBBDAWwm9mCbqIGhL
+         PK3A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mensajesgalicia.com.ar header.s=s1 header.b=Pg0t4lFo;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=QRoiOtyb;
+       spf=pass (google.com: domain of bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar designates 168.245.4.32 as permitted sender) smtp.mailfrom="bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar";
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=mensajesgalicia.com.ar
+Return-Path: <bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar>
+Received: from xvfrhqnh.outbound-mail.sendgrid.net (xvfrhqnh.outbound-mail.sendgrid.net. [168.245.4.32])
+        by mx.google.com with ESMTPS id af79cd13be357-7cad244bcb5si386423885a.587.2025.05.02.15.26.14
+        for <carrenoluciano@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 15:26:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar designates 168.245.4.32 as permitted sender) client-ip=168.245.4.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mensajesgalicia.com.ar header.s=s1 header.b=Pg0t4lFo;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=QRoiOtyb;
+       spf=pass (google.com: domain of bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar designates 168.245.4.32 as permitted sender) smtp.mailfrom="bounces+45658502-5cde-carrenoluciano=gmail.com@em2291.mensajesgalicia.com.ar";
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=mensajesgalicia.com.ar
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mensajesgalicia.com.ar;
+	h=from:subject:mime-version:reply-to:to:content-type:cc:content-type:
+	feedback-id:from:subject:to;
+	s=s1; bh=lDk0s/OrOQYZoQuFtoJuAdC8HJ6MYyyvdqLBUaD//yc=;
+	b=Pg0t4lFok1pjYaNkL15N2PSMuHJ4Sn+abcLV0hxF+gE9MHS6TZv2x9jdc4/5ln6fGPig
+	8u3xFME6NyZMTazY9x6+omTe7+7+OEoflKrwkFVATYHSJTYSXICjRAFLynPwnZ6bJzpA/v
+	wCvUs6Afce6L/TAa7NmNbgrD4o06/N0IY6T7Xt98sANFkBUSjhnQtFdYPFVIT9HRi5hzdr
+	vT9+uASGgAQ6cE/ONazcT3uzH8exiv4CNhSICu8Kny1n8Vto07eO1DisCr1n5Ao7zpD9B5
+	8GOXnJOaN/I95Pd4OIYeR2e1cH6oo5taVS5pd+83RlmJPPf+OT52Ms9hxbEscivw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=from:subject:mime-version:reply-to:to:content-type:cc:content-type:
+	feedback-id:from:subject:to;
+	s=smtpapi; bh=lDk0s/OrOQYZoQuFtoJuAdC8HJ6MYyyvdqLBUaD//yc=;
+	b=QRoiOtybhTgTil4FP2ZmZo3Zcl8AL/cYnzijjFNGHrTbqt+Jyu7zfFTk6AZwG4QDvEvf
+	TnLT9RFjuG8yYRaCEURvwkDGs869nf5w/t+HW8nM7tjNl8N9ii5LR+Ze9LLuALDhCDUsUj
+	BLUx5SM3vmmpI8GGkzGxprONYO4RTT5o0=
+Received: by recvd-64784c758b-9fplh with SMTP id recvd-64784c758b-9fplh-1-68154686-58
+	2025-05-02 22:26:14.662385758 +0000 UTC m=+2074479.015314293
+Received: from lnx-alc42.net02.com.ar (unknown)
+	by geopod-ismtpd-10 (SG)
+	with ESMTP id 69mEdOVMTKOlbySvEgrURQ
+	for <carrenoluciano@gmail.com>;
+	Fri, 02 May 2025 22:26:14.348 +0000 (UTC)
+Date: Fri, 02 May 2025 22:26:14 +0000 (UTC)
+From: E-Resumen Banco Galicia <e-resumen@mensajesgalicia.com.ar>
+Message-ID: <861714503.859959.1746224773962.JavaMail.root@lnx-alc42.net02.com.ar>
+Subject: Resumen de Cuenta VISA
+MIME-Version: 1.0
+Reply-To: e-resumen@mensajesgalicia.com.ar
+X-SG-EID: 
+ =?us-ascii?Q?u001=2E8uwrosmVYeGeU0C7SVbOzpvwqClv9j9GBMLLOXAVRMlXhUS4rZHRTuQkl?=
+ =?us-ascii?Q?OfRRNaPoJBd6r3shDk0pj60wg7QL0wu8uUcd8VV?=
+ =?us-ascii?Q?+DH0bSUW3+yDdwhd0NjaXJRuiSHTUAhBTcDaA7Q?=
+ =?us-ascii?Q?7dn+e2xF4wPfx30BeaBgPwkx1Pf1E6GENEV5XU8?=
+ =?us-ascii?Q?TYh6uP2lob+31l8FgHY7K8Z3fu=2FYQ+jhFaFuF5A?=
+ =?us-ascii?Q?6UCJ8h0XROhWVmeb3YI28B+fnaK+F++kybkjJUR?=
+ =?us-ascii?Q?dp2rKGR+kAdwWA+pd7O1CQQ=2FRQ=3D=3D?=
+To: carrenoluciano@gmail.com
+X-Entity-ID: u001.VYYE07Xo0Kh2IDrCiUVcoA==
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_855434_385158792.1746224470218"
+
+------=_Part_855434_385158792.1746224470218
+Content-Type: multipart/related; 
+	boundary="----=_Part_855435_540836644.1746224470218"
+
+------=_Part_855435_540836644.1746224470218
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"es">
+<head>
+<meta charset=3D"iso-8859-1">
+<!-- utf-8 funciona para la mayoria de los casos -->
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<!-- Forzar initial-scale no es necesario -->
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<!-- La ultima version de (edge) IE rendering engine -->
+<title>Banco Galicia</title>
+<!-- El title aparece en notificaciones de mail, como Android 4.4. -->
+<style type=3D"text/css">
+div, p, a, li, td {
+    -webkit-text-size-adjust: none;
+}
+body {
+    Margin: 0 !important;
+    padding: 0;
+    min-width: 100%;
+    background-color: #ffffff;
+}
+table {
+    border-spacing: 0;
+    font-family: "Arial", Helvetica, sans-serif;
+    color: #000000;
+    font-weight: normal;
+}
+td {
+    padding: 0;
+}
+img {
+    border: 0;
+}
+.wrapper {
+    width: 100%;
+    table-layout: fixed;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+.webkit {
+    max-width: 550px;
+}
+.outer {
+    Margin: 0 auto;
+    width: 100%;
+    max-width: 550px;
+}
+a {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.contents {
+    width: 100%;
+}
+.multi-column {
+    text-align: center;
+    font-size: 0;
+}
+.multi-column .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+.multi-column .contents {
+    font-size: 14px;
+    text-align: center;
+}
+=09
+	.cta_main_m:hover {background-color:#c85000 !important;color:#ffffff!impor=
+tant;border-radius:4px;}
+.cta_main_e:hover {background-color:#002041 !important;color:#ffffff!import=
+ant;border-radius:4px;}
+.cta_main_p:hover {background-color:#504730 !important;color:#ffffff!import=
+ant;border-radius:4px;}
+.cta_main_mo:hover {background-color:#8a50f7 !important;color:#ffffff!impor=
+tant;border-radius:4px;}
+.cta_main_bp:hover {background-color:#2b2b2b !important;color:#ffffff!impor=
+tant;border-radius:4px;}
+	.cta_main_sec:hover {background-color:#f4f4f4 !important;color:#000000!imp=
+ortant;border-radius:4px;}
+
+@media screen and (max-device-width: 496px), screen and (max-width: 496px) =
+{
+td[class=3D"vertical-1"] {
+    visibility: hidden;
+}
+th[class=3D"stack-column"], th[class=3D"stack-column-center"] {
+    display: block !important;
+    width: 100% !important;
+    direction: ltr !important;
+}
+.mobile_centrado {
+    text-align: center !important;
+    padding-right: 20px !important;
+}
+.invisible {
+    display: none;
+}
+=09
+}
+</style>
+</head>
+
+<body leftmargin=3D"0" topmargin=3D"0" marginwidth=3D"0" marginheight=3D"0"=
+ style=3D"margin:0; padding:0; -webkit-text-size-adjust:none; -ms-text-size=
+-adjust:none; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; fon=
+t-weight:normal;">
+
+<!-- Texto en Preheader escondido, minimo 90 caracteres : INICIO -->
+<div style=3D"display:none;font-size:0;color:#ffffff;line-height:0;max-heig=
+ht:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide: all;">=20
+
+ &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zw=
+nj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; =
+&zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zwn=
+j; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&=
+zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbs=
+p;
+  &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&z=
+wnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp=
+;&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &z=
+wnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp;=
+ &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nb=
+sp;
+  &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&z=
+wnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp=
+;&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &z=
+wnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp;=
+ &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nb=
+sp;
+  &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&z=
+wnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp=
+;&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &z=
+wnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp;=
+ &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nb=
+sp;
+  &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&z=
+wnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp=
+;&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &z=
+wnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp;=
+ &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nb=
+sp;
+  &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&z=
+wnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp=
+;&zwnj; &nbsp;&zwnj; &nbsp;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &z=
+wnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp;=
+ &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &zwnj;&nbsp; &nbsp;&zwnj; &nbsp;&zw=
+nj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;=
+&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nbsp;&zwnj; &nb=
+sp;</div>
+<!-- Texto en Preheader escondido, minimo 90 caracteres : fin -->
+
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bgco=
+lor=3D"#ffffff" style=3D"border-collapse:collapse;">
+  <tr>
+    <th> <!-- Email wrapper : INICIO -->=20
+      <!--[if (gte mso 9)|(IE)]><center><table><tr><td width=3D"550"><![end=
+if]-->
+     =20
+      <div style=3D"max-width: 550px; margin: 0 auto;">
+        <table border=3D"0" width=3D"550" cellpadding=3D"0" cellspacing=3D"=
+0" align=3D"center" style=3D"width: 100% !important; max-width: 550px !impo=
+rtant; margin: auto;" class=3D"email-container">
+          <tr>
+            <td>
+			=09
+			=09
+	=09
+		<!-- Header masivo 2022 cobranding inicio -->
+					=09
+						<div style=3D"background-color:#ffffff;">=20
+							<!--[if gte mso 9]>
+  <v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" src=3D"https://www.galicia.ar/content/dam/galicia=
+/banco-galicia/personas/canales/emails/blanco-header-Galicia.jpeg" color=3D=
+"#ffffff"/>
+  </v:background>
+  <![endif]-->
+						=09
+							<center>
+								<table background=3D"https://www.galicia.ar/content/dam/galicia/ban=
+co-galicia/personas/canales/emails/blanco-header-Galicia.jpeg" height=3D"43=
+" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+font-size:1px; line-height:1px;">
+									<tr>
+										<td height=3D"43" width=3D"71%" style=3D"font-size:16px;color:#ff=
+ffff"><center>
+												<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D" color:#000000;">
+													<tr>
+														<td height=3D"8" style=3D"font-size:1px; line-height:1px;">&n=
+bsp;</td>
+													</tr>
+													<tr>
+														<td width=3D"26%" style=3D"font-size:12px; padding-left:25px;=
+ line-height:1;"><img src=3D"https://www.galicia.ar/content/dam/galicia/ban=
+co-galicia/personas/canales/emails/avatar-header-Galicia.png" alt=3D"Banco =
+Galicia" width=3D"25" height=3D"25" /></td>
+														<td width=3D"74%" style=3D"font-size:12px; color:#000000; lin=
+e-height:1; font-weight:normal; padding-right:25px; text-align:right;"><spa=
+n style=3D"font-size:12px; line-height:1; color:#000000; font-weight:normal=
+; padding-right:0px; text-align:right;"><img src=3D"https://www.galicia.ar/=
+content/dam/galicia/banco-galicia/personas/canales/emails/Visa-partner-fote=
+r-header-Galicia.png" alt=3D"Visa" width=3D"43" height=3D"24" /></span></td=
+>
+													</tr>
+													<tr>
+														<td height=3D"8" style=3D"font-size:1px; line-height:1px;">&n=
+bsp;</td>
+													</tr>
+												</table>
+											</center>
+											<center>
+												<table width=3D"100%">
+													<tr>
+														<td height=3D"2" width=3D"26%" bgcolor=3D"#fa6400"></td>
+													</tr>
+												</table>
+											</center></td>
+									</tr>
+								</table>
+							</center>
+						</div>
+					=09
+						<!-- Header masivo fin -->=20
+			=09
+             =20
+              <!-- BENEFICIO principal - INICIO -->
+             =20
+ <center><table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" align=3D"center" class=3D"email-container" bgcolor=3D"#f4f4f4">
+    =20
+	 <tr><td height=3D"20">&nbsp;</td></tr>
+				=09
+	<!-- Mod 1 inicio -->=09
+				=09
+<tr><td><center><table width=3D"90%" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" bgcolor=3D"#ffffff">
+		=09
+   <tr><td height=3D"20">&nbsp;</td></tr>=20
+		=09
+   <tr><td height=3D"20"><center><table border=3D"0" width=3D"90%" cellpadd=
+ing=3D"0" cellspacing=3D"0" align=3D"center"  bgcolor=3D"#ffffff">
+                          =20
+    <tr><td height=3D"20">&nbsp;</td></tr>=20
+	=09
+	<tr><td width=3D"100%" align=3D"left" valign=3D"top" style=3D"font-size:14=
+px; line-height:14px; color:#0000000; font-weight:normal;">Hi, CARRE#O/LU=
+CIANO LEONE &#x1F44B;</td></tr>
+	=09
+	<tr><td height=3D"40"></td></tr>=09
+		=09
+=09
+	<tr><td align=3D"center"><img src=3D"https://www.galicia.ar/content/dam/ga=
+licia/banco-galicia/personas/canales/emails/iconos-html/icono_resumen-01.pn=
+g" alt=3D"Papel y lapicera" width=3D"60" height=3D"60"></td></tr>
+	   <tr><td height=3D"10"></td></tr>=09
+	=09
+	 <tr> <td style=3D"font-weight:bold; text-align:center; font-size:22px; li=
+ne-height:1.5;"><strong>The summary of transactions in your bank account is now ready.</strong></td></tr>
+=09
+	 <tr><td height=3D"30">&nbsp;</td></tr>
+	  =20
+	  =20
+=09
+<tr><td><center><table width=3D"85%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0">
+		=09
+			<tr><td height=3D"5" style=3D"font-size: 1px;">&nbsp;</td></tr>
+			=09
+			<tr><td height=3D"20" style=3D"text-align:left; font-size:18px; line-hei=
+ght:1.5;font-weight:normal; color:#000000;"><span style=3D"color: #fa6400; =
+font-weight: bold;">&#8226;</span> Transaction in euros: 4.243</td></tr>
+	=09
+      <tr><td height=3D"5" style=3D"font-size: 1px;">&nbsp;</td></tr>
+	       =20
+			<tr><td height=3D"20" style=3D"font-size: 1px;">&nbsp;</td></tr>
+
+=09
+</table></center></td></tr>
+=09
+=09
+=09
+	<!-- cta masivo 1 col inicio PRIMARIO -->
+           =20
+<tr><td><center><div>
+<!--[if mso]>
+  <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:sch=
+emas-microsoft-com:office:word" href=3D"https://www.eresumen.com.ar/msc/des=
+cargar/m/00070525-5618-4d5a-b972-7c97b84ea7f7Zde06262c2be85c95563375c4c6f5c=
+bf9a8cea31c:0" style=3D"height:48px;v-text-anchor:middle;width:260px; line-=
+height:48px;" arcsize=3D"10%" stroke=3D"f" fillcolor=3D"#fa6400">
+    <w:anchorlock/>
+    <center style=3D"color:#ffffff;font-family:sans-serif;font-size:18px;fo=
+nt-weight:bold;">
+    View summary
+    </center>
+  </v:roundrect>
+  <![endif]-->
+=09
+  <![if !mso]>
+  <table role=3D"presentation"  cellspacing=3D"0" cellpadding=3D"0"> <tr><t=
+d align=3D"center" width=3D"260" height=3D"48" bgcolor=3D"#fa6400" style=3D=
+"-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; c=
+olor: #ffffff; display: block;">
+<a href=3D"https://www.eresumen.com.ar/msc/descargar/m/00070525-5618-4d5a-b=
+972-7c97b84ea7f7Zde06262c2be85c95563375c4c6f5cbf9a8cea31c:0" style=3D"font-=
+size:18px; font-weight: bold; font-family:sans-serif; text-decoration: none=
+; line-height:40px; width:100%; display:inline-block" target=3D"_new"><span=
+ style=3D"color: #ffffff; font-size:18px; font-weight: bold; font-family:sa=
+ns-serif; text-decoration: none; line-height:48px;">
+      Conocer resumen</span></a>
+	 =20
+	 =20
+  </td></tr></table>=20
+  <![endif]>
+</div> </center></td></tr>
+<!-- cta masivo 1 col fin PRIMARIO -->
+=09
+=09
+=09
+    <tr><td height=3D"40" style=3D"font-size: 1px;">&nbsp;</td></tr>
+=09
+	<tr> <td style=3D"font-weight:normal; text-align:left; font-size:18px; lin=
+e-height:1.5;">You can also find it in Online Banking or the Galicia App and download it whenever you need &#x1F609;</td></tr>
+=09
+   							=20
+    </table></center></td></tr>
+   =20
+	<tr><td height=3D"40">&nbsp;</td></tr>
+	=09
+</table></center></td></tr>
+ =20
+		<!-- mod 1 fin -->=09
+		=09
+=09
+	=20
+	 <tr><td height=3D"20">&nbsp;</td></tr>
+	=20
+	=20
+	 <!-- mod 2 inicio -->=09
+				=09
+<tr><td><center><table width=3D"90%" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" bgcolor=3D"#ffffff">
+		=09
+     <tr><td height=3D"20">&nbsp;</td></tr>=20
+		=09
+     <tr><td height=3D"20"><center><table border=3D"0" width=3D"90%" cellpa=
+dding=3D"0" cellspacing=3D"0" align=3D"center"  bgcolor=3D"#ffffff">
+                          =20
+     <tr><td height=3D"20">&nbsp;</td></tr>
+	=09
+	      =20
+	=09
+			<tr><td height=3D"40" style=3D"font-size: 1px;">&nbsp;</td></tr>
+
+=09
+</table></center></td></tr>=09
+=09
+									=09
+							=20
+</table></center></td></tr>
+   =20
+		<tr><td height=3D"30">&nbsp;</td></tr>
+	=09
+</table></center></td></tr>
+ =20
+		<!-- mod 2 fin -->=09
+		=09
+				=09
+		<tr><td height=3D"20">&nbsp;</td></tr>
+	=09
+				=09
+			=09
+	=09
+				=09
+</table></center>
+         =20
+					=09
+			=09
+					=09
+		=09
+						<!-- footer masivo  2022 inicio -->
+					=09
+						<center>
+							<table border=3D"0" height=3D"2" width=3D"550" cellpadding=3D"0" cel=
+lspacing=3D"0" style=3D"width:100% !important; max-width: 550px;">
+								<tr>
+									<td height=3D"2" width=3D"100%" bgcolor=3D"#fa6400"></td>
+								</tr>
+							</table>
+						</center>
+					=09
+						<center>
+							<table border=3D"0" height=3D"2" width=3D"550" cellpadding=3D"0" cel=
+lspacing=3D"0" style=3D"width:100% !important; max-width: 550px;">
+								<tr>
+									<td height=3D"2" bgcolor=3D"#cdcdcd" style=3D"font-size:0; line-he=
+ight:0;"></td>
+								</tr>
+							</table>
+						</center>
+						<div style=3D"background-color:#ffffff;">=20
+							<!--[if gte mso 9]>
+  <v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" src=3D"https://www.galicia.ar/content/dam/galicia=
+/banco-galicia/personas/canales/emails/blanco-header-Galicia.jpeg" color=3D=
+"#ffffff"/>
+  </v:background>
+  <![endif]-->
+							<center>
+								<table background=3D"https://www.galicia.ar/content/dam/galicia/ban=
+co-galicia/personas/canales/emails/blanco-header-Galicia.jpeg" border=3D"0"=
+ width=3D"550" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:100% !imp=
+ortant; max-width: 550px;">
+									<tr>
+										<td><center>
+												<table border=3D"0"  width=3D"500" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:90% !important; max-width: 500px;">
+													<tr>
+														<td height=3D"55" width=3D"38" align=3D"left" style=3D"text-a=
+lign:center; font-size:11px; line-height:13px; color:#666666; padding:4px;"=
+><a style=3D"color:#666666;" href=3D"https://www.facebook.com/bancogalicia"=
+ target=3D"_blank"><img src=3D"https://www.galicia.ar/content/dam/galicia/b=
+anco-galicia/personas/canales/emails/facebook-footer-Galicia.png" alt=3D"Fa=
+cebook" height=3D"25" width=3D"25"  /></a></td>
+														<td height=3D"55" width=3D"38" align=3D"left" style=3D"text-a=
+lign:center; font-size:11px; line-height:13px; padding:4px; color:#666666">=
+<a style=3D"color:#666666;" href=3D"https://twitter.com/bancogalicia" targe=
+t=3D"_blank"><img src=3D"https://www.galicia.ar/content/dam/galicia/banco-g=
+alicia/personas/canales/emails/twitter-footer-Galicia.png" alt=3D"Twitter" =
+width=3D"31" height=3D"25"/></a></td>
+														<td height=3D"55" width=3D"38" align=3D"left" style=3D"text-a=
+lign:center; font-size:11px; line-height:13px; padding:4px; color:#666666">=
+<a style=3D"color:#666666;" href=3D"https://instagram.com/bancogalicia" tar=
+get=3D"_blank"><img src=3D"https://www.galicia.ar/content/dam/galicia/banco=
+-galicia/personas/canales/emails/instagram-footer-Galicia.png" alt=3D"Insta=
+gram" height=3D"25" width=3D"25"  /></a></td>
+														<td  style=3D"text-align:center; font-size:13px; line-height:=
+13px; color:#000000; font-weight:bold;"><span style=3D"font-size:12px; colo=
+r:#000000; font-weight:normal; text-align:center;"><img src=3D"https://www.=
+galicia.ar/content/dam/galicia/banco-galicia/personas/canales/emails/Visa-p=
+artner-foter-header-Galicia.png" alt=3D"Visa" width=3D"43" height=3D"24" />=
+</span></td>
+														<td align=3D"right" width=3D"75" style=3D"text-align:center; =
+font-size:11px; line-height:13px; color:#666666"><a style=3D"color:#666666;=
+" href=3D"https://www.galicia.ar/personas" target=3D"_blank"><img src=3D"ht=
+tps://www.galicia.ar/content/dam/galicia/banco-galicia/personas/canales/ema=
+ils/masterbrand-footer-Galicia.png" alt=3D"Banco Galicia" width=3D"91" heig=
+ht=3D"25" /></a></td>
+													</tr>
+												</table>
+											</center></td>
+									</tr>
+								</table>
+							</center>
+						</div>
+					=09
+						<!-- footer masivo fin -->=20
+             =20
+              <!-- Legales : INICIO -->
+             =20
+              <center>
+                <table border=3D"0" width=3D"90%" cellpadding=3D"0" cellspa=
+cing=3D"0">
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td style=3D"font-size:12px; text-align:justify; line-h=
+eight:16px; color:#000000; font-weight:bold;"> This email was sent automatically. Please do not reply. </td>
+                  </tr>
+                  <tr>
+                    <td style=3D"font-size:11px; text-align:justify; line-h=
+eight:16px; color:#000000; font-weight: normal;">You have the right to request that we fully or partially remove or block you from our database by submitting a formal request at any of our branches.<br />
+Here are two important articles from the Personal Data Protection Law (No. 25326):<br />
+1- Article 27, subsection 3: “The data subject may at any time request the removal or blocking of their name from the databases referred to in this article.”<br />
+2- Article 27 - Annex I - Decree 1558/01: “In any advertising communication made by mail, telephone, email, Internet, or other remote means, it must be expressly and clearly stated that the data subject has the right to request the full or partial removal or blocking of their name from the database. Upon the data subject’s request, the name of the data controller or user who provided the information must be disclosed.”<br />
+Security reminder: We will never contact you to validate personal information such as ID number, access codes, coordinates card numbers, or account numbers. If someone contacts you with this intention, you can call 0810-444-6500 so we can assist you. Any personal information that may be collected is used in accordance with the Privacy Policy, which you can review at: <a style="font-weight: normal;" href="https://www.galicia.ar/personas/politica-de-privacidad" target="_blank" title="https://www.galicia.ar/personas/politica-de-privacidad">https://www.galicia.ar/personas/politica-de-privacidad</a></td>
+                  </tr>
+                  <tr>
+                    <td height=3D"20">&nbsp;</td>
+                  </tr>
+                </table>
+              </center>
+             =20
+              <!-- Legales : FIN --></td>
+          </tr>
+        </table>
+      </div>
+     =20
+      <!--[if mso]></td></tr></table></center><![endif]-->=20
+      <!-- Email wrapper : FIN --> </th>
+  </tr>
+</table>
+<img src=3D"https://u45658502.ct.sendgrid.net/wf/open?upn=3Du001.Ty6hvyIgRe=
+qKKw7ALD5Ws6jJLbT6ChkJcWezrofFb2Sxm2le8LN07T3uLf9Pc-2B64SApvCr8IokEkZ4XZABV=
+osvBfSn-2F9xdDhhXhKfRz93hdkOiDSizIYix5VxWpW6oPUl92l166wBVFbIilaSgoCLZ-2F3PX=
+KpnpJJ8FfjlCbsQW8VkNCJhxD-2FWHV-2F0dyI7RtS1RlOSHtT-2BLV7d94kiyABfS83JQe7GLV=
+3qqfWHJroQVk-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"he=
+ight:1px !important;width:1px !important;border-width:0 !important;margin-t=
+op:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin=
+-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;pad=
+ding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+------=_Part_855435_540836644.1746224470218--
+
+------=_Part_855434_385158792.1746224470218--

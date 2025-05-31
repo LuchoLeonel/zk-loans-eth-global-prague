@@ -1,0 +1,158 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useProofStore } from "@/hooks/useProofStore";
+import { Mail } from "lucide-react";
+import Breadcrumb from "@/components/Breadcrumb";
+import { tokensToCheckTeleporter } from "@/lib/utils"; // importa tu JSON listo
+import { vlayerClient } from "@/lib/vlayerTeleporterClient";
+import proverSpec from "@/contracts/SimpleTeleportProver.json";
+import verifierSpec from "@/contracts/SimpleTeleportVerifier.json";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import type { Abi } from 'viem';
+import { Zap, ArrowRight, SkipForward, CheckCircle } from "lucide-react";
+
+
+
+export default function TeleporterPage() {
+  const router = useRouter();
+  const { proofs, setProofs } = useProofStore();
+  const [dotCount, setDotCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [crossChainBalance, setCrossChainBalance] = useState(null);
+  const { user } = useDynamicContext();
+
+  async function callTeleportProver(tokensToCheck: any[]) {
+    const address = user?.verifiedCredentials?.[0]?.address;
+
+    if (!address) {
+      console.error("❌ No address found in user context");
+      return;
+    }
+
+    const formattedTokens = tokensToCheck.map((token) => ({
+      addr: token.addr as `0x${string}`,
+      chainId: BigInt(token.chainId),
+      blockNumber: BigInt(token.blockNumber),
+      balance: BigInt(token.balance),
+    }));
+    
+    try {
+      const proofHash = await vlayerClient.prove({
+        address: process.env.NEXT_PUBLIC_TELEPORTER_PROVER_ADDRESS! as `0x${string}`,
+        proverAbi: proverSpec.abi as Abi,
+        functionName: "crossChainBalanceOf",
+        args: [address, formattedTokens],
+        chainId: 11155111, // sepolia chain ID
+        gasLimit: 1_000_000,
+      });
+
+      const result: any = await vlayerClient.waitForProvingResult({ hash: proofHash });
+
+      console.log("✅ Proof result:", result);
+      
+      const totalBalance = result[2].reduce(
+        (acc: bigint, token: any) => acc + BigInt(token.balance),
+        BigInt(0)
+      );
+
+      setCrossChainBalance(totalBalance);
+      console.log("✅ Total cross-chain balance:", totalBalance.toString());
+
+
+      return result;
+    } catch (error) {
+      console.error("❌ Error in vlayerClient.prove:", error);
+      throw error;
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => setDotCount((prev) => (prev + 1) % 4), 300);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleTeleportProof = async () => {
+    try {
+      setLoading(true);
+      const result: any = await callTeleportProver(tokensToCheckTeleporter);
+      setProofs(result); // guarda el resultado en tu proof store
+      console.log("✅ Proof result saved to store:", result);
+    } catch (error) {
+      console.error("❌ Error generating proof:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+  <div className="min-h-screen p-2 max-w-5xl mx-auto overflow-auto space-y-4">
+    <Breadcrumb active="teleporter" />
+
+    <div className="group p-6 rounded-2xl bg-gradient-to-r from-blue-900/30 to-cyan-900/20 border border-blue-500/30 backdrop-blur-xl hover:border-blue-400/60 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/20 mb-6">
+        <div className="flex items-start space-x-5">
+          <div className="w-12 h-12 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 rounded-xl flex items-center justify-center group-hover:from-blue-500/50 group-hover:to-cyan-400/50 transition-all duration-300">
+          <Zap className="w-6 h-6 text-blue-300" />
+        </div>
+       <div className="flex-1 max-w-xl">
+          <h1 className="text-2xl font-bold text-white mb-2">Teleporter Checkpoint</h1>
+          <p className="text-purple-200 text-sm mb-4">
+            Use this section to <strong>teleport across chains</strong> and generate a <strong>cross-chain balance proof</strong> for your address.
+            <br /><br />
+            We’ll collect the balances of your tokens on multiple chains and sum them up to know how much total value you hold across all networks.
+            <br /><br />
+            Click the button below to generate your proof and unlock the next step.
+          </p>
+
+          {crossChainBalance ? (
+            <div className="mb-4 flex items-center text-green-300 font-semibold">
+              <CheckCircle className="w-5 h-5 mr-2" />
+              Total Cross-Chain Balance: {(Number(crossChainBalance) / 1_000_000).toLocaleString()} USDC
+            </div>
+          ) : (
+             <button
+              onClick={handleTeleportProof}
+              disabled={loading || !!crossChainBalance}
+              className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
+                (!loading && !crossChainBalance)
+                  ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                  : 'bg-gray-300 cursor-not-allowed !text-gray-800'
+              }`}
+            >
+              {loading ? `Generating Proof${".".repeat(dotCount)}` : "Generate Cross-Chain Proof"}
+            </button>
+          )}
+
+      
+        </div>
+      </div>
+    </div>
+
+    <div className="flex justify-between mt-4">
+      <button
+        disabled={!!crossChainBalance}
+        onClick={() => router.replace("/email")}
+        className={`px-6 py-2 rounded-lg font-semibold text-gray-800 bg-gray-300 hover:bg-gray-400 transition-all ${
+          !!crossChainBalance ? 'cursor-not-allowed' : 'cursor-pointer'
+        }`}
+      >
+        Skip
+      </button>
+
+      <button
+        onClick={() => router.replace("/email")}
+        disabled={!crossChainBalance || crossChainBalance === BigInt(0)}
+        className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${
+          crossChainBalance && crossChainBalance !== BigInt(0)
+            ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+            : 'bg-gray-300 cursor-not-allowed !text-gray-400'
+        }`}
+      >
+        Next
+      </button>
+    </div>
+  </div>
+);
+
+}
