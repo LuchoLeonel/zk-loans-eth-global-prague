@@ -19,6 +19,22 @@ export const handleRequestBankSummary = () => {
 
 export const evmNetworks = [
   {
+    blockExplorerUrls: ['https://sepolia.etherscan.io'],
+    chainId: 11155111,
+    chainName: 'Ethereum Sepolia',
+    iconUrls: ['http://localhost:3000/eth_logo.png'],
+    name: 'Sepolia Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Sepolia Ether',
+      symbol: 'SEP',
+      iconUrl: 'http://localhost:3000/eth_logo.png',
+    },
+    networkId: 11155111,
+    rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/N3g083ohb92Bs8eNHAlR7'],
+    vanityName: 'Ethereum Sepolia',
+  },
+  {
     blockExplorerUrls: ['https://rootstock.blockscout.com/'],
     chainId: 30,
     chainName: 'Rootstock Mainnet',

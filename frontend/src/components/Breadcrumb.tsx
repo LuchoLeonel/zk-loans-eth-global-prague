@@ -6,7 +6,7 @@ const steps = [
   "teleporter",
   "identity",
   "scoring",
-  "claim-loan",
+  "loans",
 ];
 
 function formatLabel(slug: string) {

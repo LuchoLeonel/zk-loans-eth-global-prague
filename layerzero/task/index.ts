@@ -1,3 +1,0 @@
-import './sendOFT'
-import './mintOFT'
-

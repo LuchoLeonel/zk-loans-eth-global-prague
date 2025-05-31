@@ -805,6 +805,15 @@
     buffer "6.0.3"
     eventemitter3 "5.0.1"
 
+"@dynamic-labs/ethers-v6@^4.19.3":
+  version "4.19.3"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/ethers-v6/-/ethers-v6-4.19.3.tgz#43050071e5ddb90e0976c379695446839f9f99b9"
+  integrity sha512-pzQkTuPA51oNvt+p2u++TsFN5mt4dvRXNDlVoJDVS+jmHazDQ8PbGunXABq8FLeZbNnIkH6D98drMAzGt4xpbQ==
+  dependencies:
+    "@dynamic-labs/assert-package-version" "4.19.3"
+    "@dynamic-labs/ethereum-core" "4.19.3"
+    "@dynamic-labs/wallet-connector-core" "4.19.3"
+
 "@dynamic-labs/iconic@4.19.3":
   version "4.19.3"
   resolved "https://registry.yarnpkg.com/@dynamic-labs/iconic/-/iconic-4.19.3.tgz#9f5d8319b52cdd974219d2623062954ead365b70"
