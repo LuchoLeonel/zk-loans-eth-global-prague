@@ -10,6 +10,8 @@ import proverSpec from "@/contracts/ZkScoreSender.json";
 import { useDynamicContext, useRpcProviders } from '@dynamic-labs/sdk-react-core';
 import { getWeb3Provider,getSigner, } from '@dynamic-labs/ethers-v6'
 import { useRouter } from 'next/navigation';
+import { EndpointId } from '@layerzerolabs/lz-definitions'
+import {Options} from '@layerzerolabs/lz-v2-utilities';
 
 export default function ClaimLoanPage() {
   const [dotCount, setDotCount] = useState(0);
@@ -78,10 +80,8 @@ export default function ClaimLoanPage() {
   async function handleSaveScoring() {
       try {
           setLoading(true);
-          
-          const provider = await getWeb3Provider(primaryWallet)
+
           const signer = await getSigner(primaryWallet)
-          console.log(signer);
           const contractAddress = process.env.NEXT_PUBLIC_ETH_SEPOLIA_SCORING_ADDRESS!;
           const abi = proverSpec.abi as InterfaceAbi;
 
@@ -90,6 +90,9 @@ export default function ClaimLoanPage() {
           const proof = timeTravelProof[0];
           const claimer = timeTravelProof[1];
           const average = timeTravelProof[2];
+          const enid = EndpointId.ROOTSTOCK_V2_TESTNET;
+
+          const options = Options.newOptions().addExecutorLzReceiveOption(80000).toHex();
 
           const tx = await contract.submitScore(
               loanScore.score,
@@ -97,29 +100,31 @@ export default function ClaimLoanPage() {
               loanScore.maxLoan,
               proof,
               claimer,
-              average
+              average,
+              enid,
+              options
           );
 
           console.log("Transaction sent:", tx.hash);
           await tx.wait();
           console.log("Transaction confirmed!");
 
-          await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/score`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              address: claimer,
-              score: loanScore.score,
-              probability: loanScore.probability,
-              maxLoan: loanScore.maxLoan,
-              firstName: 'John',            // <-- estos podés armarlos dinámicamente si tenés los datos
-              lastName: 'Doe',
-              documentType: 'Passport',
-              documentNumber: 'A12345678',
-            }),
-          })
+            await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/score`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                address: claimer,
+                score: loanScore.score,
+                probability: loanScore.probability,
+                maxLoan: loanScore.maxLoan,
+                firstName: 'John',            // <-- estos podés armarlos dinámicamente si tenés los datos
+                lastName: 'Doe',
+                documentType: 'Passport',
+                documentNumber: 'A12345678',
+              }),
+            })
             .then((res) => {
               if (!res.ok) throw new Error('Failed to save score in backend');
               return res.json();

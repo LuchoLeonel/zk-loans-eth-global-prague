@@ -4,6 +4,7 @@ pragma solidity ^0.8.22;
 import { OApp, MessagingFee, Origin } from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
 import { MessagingReceipt } from "@layerzerolabs/oapp-evm/contracts/oapp/OAppSender.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { OAppOptionsType3 } from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OAppOptionsType3.sol";
 
 interface IVerifier {
     function claim(
@@ -40,7 +41,7 @@ struct Proof {
 }
 
 
-contract ZkScoreSender is Ownable, OApp{
+contract ZkScoreSender is Ownable, OApp, OAppOptionsType3 {
     IVerifier public verifier;
 
     struct ScoreData {
@@ -67,40 +68,39 @@ contract ZkScoreSender is Ownable, OApp{
     }
 
     function submitScore(
-            uint256 score,
-            uint256 probability,
-            uint256 maxLoan,
-            Proof calldata proof,
-            address claimer,
-            uint256 average
-    ) external {
-            //verifier.claim(proof, claimer, average);
-
-            userScores[claimer] = ScoreData({
-                score: score,
-                probability: probability,
-                maxLoan: maxLoan
-            });
-
-            emit ScoreSubmitted(claimer, score, probability, maxLoan);
-    }
-
-    /// @notice Send (user, score) to Rootstock
-    function sendScore(
-        uint32 _dstEid,
-        address user,
         uint256 score,
-        bytes calldata _options
+        uint256 probability,
+        uint256 maxLoan,
+        Proof calldata proof,
+        address claimer,
+        uint256 average,
+        uint32 dstEid,
+        bytes calldata options
     ) external payable returns (MessagingReceipt memory receipt) {
-        bytes memory payload = abi.encode(user, score);
+        // Verificar el proof si es necesario
+        // verifier.claim(proof, claimer, average);
+
+        userScores[claimer] = ScoreData({
+            score: score,
+            probability: probability,
+            maxLoan: maxLoan
+        });
+
+        emit ScoreSubmitted(claimer, score, probability, maxLoan);
+
+        bytes memory payload = abi.encode(claimer, maxLoan);
+
         receipt = _lzSend(
-            _dstEid,
+            dstEid,
             payload,
-            _options,
+            options,
             MessagingFee(msg.value, 0),
             payable(msg.sender)
         );
+
+        emit ScoreSent(claimer, score, probability, maxLoan, dstEid);
     }
+
 
     function _lzReceive(
     Origin calldata,
