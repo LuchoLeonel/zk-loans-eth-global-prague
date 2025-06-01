@@ -1,0 +1,339 @@
+{
+  "address": "0x8174fDDe31E994478a9f9eCe97603348a7773090",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_endpoint",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_oApp",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "scoreHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "MetadataStored",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "endpoint",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getMetadata",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "docHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_oApp",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_message",
+          "type": "bytes"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "lzCompose",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oApp",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "userMetadata",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "docHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x169edb6e09b45e81cd3bc662ecbccc3c5b3218b4d64ce3eca0b24da89b25c95e",
+  "receipt": {
+    "to": null,
+    "from": "0xFbC66bD8466f7B7628fD32F8a8C07f3976c73979",
+    "contractAddress": "0x8174fDDe31E994478a9f9eCe97603348a7773090",
+    "transactionIndex": 2,
+    "gasUsed": "364827",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000840000000000000000000000400000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000008000500000000000000000000000",
+    "blockHash": "0x06440e154d5bb5434a86c59f19459c1e71cecea0209aca1d92e40b36980ddc5e",
+    "transactionHash": "0x169edb6e09b45e81cd3bc662ecbccc3c5b3218b4d64ce3eca0b24da89b25c95e",
+    "logs": [
+      {
+        "transactionIndex": 2,
+        "blockNumber": 6452168,
+        "transactionHash": "0x169edb6e09b45e81cd3bc662ecbccc3c5b3218b4d64ce3eca0b24da89b25c95e",
+        "address": "0x8174fDDe31E994478a9f9eCe97603348a7773090",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000fbc66bd8466f7b7628fd32f8a8c07f3976c73979"
+        ],
+        "data": "0x",
+        "logIndex": 0,
+        "blockHash": "0x06440e154d5bb5434a86c59f19459c1e71cecea0209aca1d92e40b36980ddc5e"
+      }
+    ],
+    "blockNumber": 6452168,
+    "cumulativeGasUsed": "550344",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff",
+    "0x31e0A37bda916C0098be8600e6f156D877cb4BA8"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "fbb6293db8957820e0639a77c7681d1b",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.22+commit.4fc1097e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_endpoint\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_oApp\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"scoreHash\",\"type\":\"bytes32\"}],\"name\":\"MetadataStored\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"endpoint\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getMetadata\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"docHash\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_oApp\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_message\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"lzCompose\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oApp\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"userMetadata\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"docHash\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}]},\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"Composer\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Stores a signature and scoreHash after cross-chain approval\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Composer.sol\":\"Composer\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroComposer.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity >=0.8.0;\\n\\n/**\\n * @title ILayerZeroComposer\\n */\\ninterface ILayerZeroComposer {\\n    /**\\n     * @notice Composes a LayerZero message from an OApp.\\n     * @dev To ensure non-reentrancy, implementers of this interface MUST assert msg.sender is the corresponding EndpointV2 contract (i.e., onlyEndpointV2).\\n     * @param _from The address initiating the composition, typically the OApp where the lzReceive was called.\\n     * @param _guid The unique identifier for the corresponding LayerZero src/dst tx.\\n     * @param _message The composed message payload in bytes. NOT necessarily the same payload passed via lzReceive.\\n     * @param _executor The address of the executor for the composed message.\\n     * @param _extraData Additional arbitrary data in bytes passed by the entity who executes the lzCompose.\\n     */\\n    function lzCompose(\\n        address _from,\\n        bytes32 _guid,\\n        bytes calldata _message,\\n        address _executor,\\n        bytes calldata _extraData\\n    ) external payable;\\n}\\n\",\"keccak256\":\"0xfaca7205d4211ee9208a7e59171e2301731f3d2a20c49b4a839821871f5fdd49\",\"license\":\"MIT\"},\"@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppComposer.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.20;\\n\\nimport { ILayerZeroComposer } from \\\"@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroComposer.sol\\\";\\n\\n/**\\n * @title IOAppComposer\\n * @dev This interface defines the OApp Composer, allowing developers to inherit only the OApp package without the protocol.\\n */\\n// solhint-disable-next-line no-empty-blocks\\ninterface IOAppComposer is ILayerZeroComposer {}\\n\",\"keccak256\":\"0xe5014c411acb2b59dd74ae74a1bab02cf32d94a41a548a5ab553d64aeeb55dae\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"contracts/Composer.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.22;\\n\\nimport { IOAppComposer } from \\\"@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppComposer.sol\\\";\\nimport { Ownable } from \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\n\\n/**\\n * @title Composer\\n * @notice Stores a signature and scoreHash after cross-chain approval\\n */\\ncontract Composer is IOAppComposer, Ownable {\\n    address public immutable endpoint;\\n    address public immutable oApp;\\n\\n    struct Metadata {\\n        bytes32 docHash; // docHash of the user's that he signs\\n    }\\n\\n    mapping(address => Metadata) public userMetadata;\\n\\n    event MetadataStored(address indexed user, bytes32 scoreHash);\\n\\n    constructor(address _endpoint, address _oApp) Ownable(msg.sender) {\\n        endpoint = _endpoint;\\n        oApp = _oApp;\\n    }\\n\\n    function lzCompose(\\n        address _oApp,\\n        bytes32, // _guid\\n        bytes calldata _message,\\n        address, // _executor\\n        bytes calldata // _extraData\\n    ) external payable override {\\n        require(_oApp == oApp, \\\"Invalid source OApp\\\");\\n\\n        // Guess the message format is (address user, bytes32 docHash)\\n        (address user, bytes32 docHash) =\\n            abi.decode(_message, (address, bytes32));\\n\\n        userMetadata[user] = Metadata(docHash);\\n        emit MetadataStored(user, docHash);\\n    }\\n\\n    function getMetadata(address user) external view returns (bytes32 docHash) {\\n        return userMetadata[user].docHash;\\n    }\\n}\",\"keccak256\":\"0x8ee0d9ae08071ab56b69c58020258ed68f2ed8e297bbcc4a921c3add56672fe1\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60c060405234801561001057600080fd5b5060405161066938038061066983398101604081905261002f916100e2565b338061005557604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b61005e81610076565b506001600160a01b039182166080521660a052610115565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b80516001600160a01b03811681146100dd57600080fd5b919050565b600080604083850312156100f557600080fd5b6100fe836100c6565b915061010c602084016100c6565b90509250929050565b60805160a0516105296101406000396000818160db01526101f40152600061012701526105296000f3fe60806040526004361061007b5760003560e01c80638da5cb5b1161004e5780638da5cb5b14610160578063d0a102601461017e578063d4618aab14610191578063f2fde38b146101be57600080fd5b80632a50c1461461008057806352ae2879146100c95780635e280f1114610115578063715018a614610149575b600080fd5b34801561008c57600080fd5b506100b661009b3660046103b9565b6001600160a01b031660009081526001602052604090205490565b6040519081526020015b60405180910390f35b3480156100d557600080fd5b506100fd7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020016100c0565b34801561012157600080fd5b506100fd7f000000000000000000000000000000000000000000000000000000000000000081565b34801561015557600080fd5b5061015e6101de565b005b34801561016c57600080fd5b506000546001600160a01b03166100fd565b61015e61018c366004610426565b6101f2565b34801561019d57600080fd5b506100b66101ac3660046103b9565b60016020526000908152604090205481565b3480156101ca57600080fd5b5061015e6101d93660046103b9565b6102e9565b6101e6610327565b6101f06000610354565b565b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316876001600160a01b03161461026e5760405162461bcd60e51b81526020600482015260136024820152720496e76616c696420736f75726365204f41707606c1b60448201526064015b60405180910390fd5b60008061027d868801886104c7565b60408051602080820183528382526001600160a01b0385166000818152600183528490209251909255915183815293955091935090917f541a415af59c60cee08a452079eda5ca7005855bd4e3a1be67846f835d35320e910160405180910390a2505050505050505050565b6102f1610327565b6001600160a01b03811661031b57604051631e4fbdf760e01b815260006004820152602401610265565b61032481610354565b50565b6000546001600160a01b031633146101f05760405163118cdaa760e01b8152336004820152602401610265565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6001600160a01b038116811461032457600080fd5b6000602082840312156103cb57600080fd5b81356103d6816103a4565b9392505050565b60008083601f8401126103ef57600080fd5b50813567ffffffffffffffff81111561040757600080fd5b60208301915083602082850101111561041f57600080fd5b9250929050565b600080600080600080600060a0888a03121561044157600080fd5b873561044c816103a4565b965060208801359550604088013567ffffffffffffffff8082111561047057600080fd5b61047c8b838c016103dd565b909750955060608a01359150610491826103a4565b909350608089013590808211156104a757600080fd5b506104b48a828b016103dd565b989b979a50959850939692959293505050565b600080604083850312156104da57600080fd5b82356104e5816103a4565b94602093909301359350505056fea264697066735822122073ae823c4b39a09485af890183d323a105f4a8744b8a1bd662b7291cef04c3b464736f6c63430008160033",
+  "deployedBytecode": "0x60806040526004361061007b5760003560e01c80638da5cb5b1161004e5780638da5cb5b14610160578063d0a102601461017e578063d4618aab14610191578063f2fde38b146101be57600080fd5b80632a50c1461461008057806352ae2879146100c95780635e280f1114610115578063715018a614610149575b600080fd5b34801561008c57600080fd5b506100b661009b3660046103b9565b6001600160a01b031660009081526001602052604090205490565b6040519081526020015b60405180910390f35b3480156100d557600080fd5b506100fd7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020016100c0565b34801561012157600080fd5b506100fd7f000000000000000000000000000000000000000000000000000000000000000081565b34801561015557600080fd5b5061015e6101de565b005b34801561016c57600080fd5b506000546001600160a01b03166100fd565b61015e61018c366004610426565b6101f2565b34801561019d57600080fd5b506100b66101ac3660046103b9565b60016020526000908152604090205481565b3480156101ca57600080fd5b5061015e6101d93660046103b9565b6102e9565b6101e6610327565b6101f06000610354565b565b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316876001600160a01b03161461026e5760405162461bcd60e51b81526020600482015260136024820152720496e76616c696420736f75726365204f41707606c1b60448201526064015b60405180910390fd5b60008061027d868801886104c7565b60408051602080820183528382526001600160a01b0385166000818152600183528490209251909255915183815293955091935090917f541a415af59c60cee08a452079eda5ca7005855bd4e3a1be67846f835d35320e910160405180910390a2505050505050505050565b6102f1610327565b6001600160a01b03811661031b57604051631e4fbdf760e01b815260006004820152602401610265565b61032481610354565b50565b6000546001600160a01b031633146101f05760405163118cdaa760e01b8152336004820152602401610265565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6001600160a01b038116811461032457600080fd5b6000602082840312156103cb57600080fd5b81356103d6816103a4565b9392505050565b60008083601f8401126103ef57600080fd5b50813567ffffffffffffffff81111561040757600080fd5b60208301915083602082850101111561041f57600080fd5b9250929050565b600080600080600080600060a0888a03121561044157600080fd5b873561044c816103a4565b965060208801359550604088013567ffffffffffffffff8082111561047057600080fd5b61047c8b838c016103dd565b909750955060608a01359150610491826103a4565b909350608089013590808211156104a757600080fd5b506104b48a828b016103dd565b989b979a50959850939692959293505050565b600080604083850312156104da57600080fd5b82356104e5816103a4565b94602093909301359350505056fea264697066735822122073ae823c4b39a09485af890183d323a105f4a8744b8a1bd662b7291cef04c3b464736f6c63430008160033",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "title": "Composer",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Stores a signature and scoreHash after cross-chain approval",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1559,
+        "contract": "contracts/Composer.sol:Composer",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 2395,
+        "contract": "contracts/Composer.sol:Composer",
+        "label": "userMetadata",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_struct(Metadata)2390_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_address,t_struct(Metadata)2390_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct Composer.Metadata)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Metadata)2390_storage"
+      },
+      "t_struct(Metadata)2390_storage": {
+        "encoding": "inplace",
+        "label": "struct Composer.Metadata",
+        "members": [
+          {
+            "astId": 2389,
+            "contract": "contracts/Composer.sol:Composer",
+            "label": "docHash",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bytes32"
+          }
+        ],
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
