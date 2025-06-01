@@ -81,7 +81,7 @@ export default function ClaimLoanPage() {
       try {
           setLoading(true);
 
-          const signer = await getSigner(primaryWallet)
+          const signer = await getSigner(primaryWallet!)
           const contractAddress = process.env.NEXT_PUBLIC_ETH_SEPOLIA_SCORING_ADDRESS!;
           const abi = proverSpec.abi as InterfaceAbi;
 
@@ -156,7 +156,7 @@ export default function ClaimLoanPage() {
         <h1 className="text-3xl font-bold text-white mb-2 flex flex-row justify-center items-center">
           <Target className="w-8 h-8 mr-2" /> Credit Score
         </h1>
-        <p className="text-purple-200 text-sm mb-4">
+        <p className="text-blue-100 text-sm mb-4">
           We’ve analyzed your proofs and calculated your <strong>credit score</strong>.
           Below is a detailed breakdown.
         </p>

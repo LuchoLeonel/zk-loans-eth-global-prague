@@ -9,37 +9,8 @@ import { Button } from "./ui/button"
 import Image from "next/image"
 
 const Header = () => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const isLoggedIn = useIsLoggedIn()
-  const { handleLogOut } = useDynamicContext()
-
-  const [voiceprintPresent, setVoiceprintPresent] = useState(false)
-
-  const checkVoiceprint = () => {
-    const vp = localStorage.getItem("voiceprint")
-    const isValid = vp && vp !== 'undefined' && vp !== 'null'
-    setVoiceprintPresent(!!isValid)
-  }
-
-  useEffect(() => {
-    checkVoiceprint()
-  }, [])
-
-  useEffect(() => {
-    checkVoiceprint()
-  }, [pathname])
-
-  const handleRestartDemo = () => {
-    localStorage.removeItem("voiceprint")
-    handleLogOut()
-    router.push("/")
-  }
-
-  const shouldShowButton = isLoggedIn && voiceprintPresent
-
   return (
-      <header className="flex items-center justify-between p-2 lg:p-2">
+      <header className="flex items-center justify-between p-2 lg:p-4">
           <div className="flex items-center space-x-3 px-4">
             <Image src="/logo-transparent.png" width={140} height={100} alt="logo" />
           </div>

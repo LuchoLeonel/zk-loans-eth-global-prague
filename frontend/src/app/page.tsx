@@ -122,7 +122,7 @@ export default function ZKLoansLanding() {
   }, [mousePosition])
 
   return (
-     <main className="flex-1 flex items-center px-6 lg:px-8">
+     <div className="flex-grow flex items-center px-6 lg:px-8">
         <RedirectFromHome />
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
             {/* Left Column - Hero Content */}
@@ -157,11 +157,6 @@ export default function ZKLoansLanding() {
                   Get a Loan
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-blue-800/50 mb-15">
-               
               </div>
             </div>
 
@@ -214,6 +209,6 @@ export default function ZKLoansLanding() {
              
             </div>
           </div>
-        </main>
+        </div>
   )
 }

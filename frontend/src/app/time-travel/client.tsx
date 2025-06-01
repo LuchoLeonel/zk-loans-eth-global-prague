@@ -83,7 +83,7 @@ export default function TimeTravelPage() {
 
           <div className="flex-1 max-w-xl">
             <h1 className="text-2xl font-bold text-white mb-2">Time Travel</h1>
-            <p className="text-purple-200 text-sm mb-4">
+            <p className="text-blue-100 text-sm mb-4">
               Use this section to generate a <strong>single-chain balance proof</strong> over a block range on <strong>Ethereum Sepolia</strong>.
               <br /><br />
               We’ll calculate the <strong>average balance</strong> of your account over the last blocks to provide a time-weighted proof.

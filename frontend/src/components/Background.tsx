@@ -121,7 +121,7 @@ export default function Background({children}: BackgroundProps) {
   }, [mousePosition])
 
   return (
-    <div className="h-screen w-full relative overflow-hidden bg-slate-800">
+    <div className="min-h-screen w-full relative overflow-hidden bg-slate-800">
       {/* Dynamic Background Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" style={{ opacity: 0.8 }} />
 
@@ -213,7 +213,7 @@ export default function Background({children}: BackgroundProps) {
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col flex-grow">
         {children}
       </div>
     </div>

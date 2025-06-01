@@ -34,11 +34,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <DynamicProvider>
           <Background>
-            <>
+            <div className="flex flex-col min-h-screen">
               <Header />
-              {children}
+              <main className="flex-grow p-4">{children}</main>
               <Footer />
-            </>
+            </div>
           </Background>
         </DynamicProvider>
       </body>

@@ -60,7 +60,7 @@ return (
         </div>
        <div className="flex-1 max-w-xl">
           <h1 className="text-2xl font-bold text-white mb-2">Identity</h1>
-          <p className="text-purple-200 text-sm">
+          <p className="text-blue-100 text-sm">
             Use this section to <strong>verify your identity</strong> and generate a <strong>KYC proof</strong> to ensure you meet compliance requirements.
           </p>
           </div>

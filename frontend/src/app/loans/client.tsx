@@ -40,7 +40,7 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score,
     try {
         setLoading(true);
 
-        const provider = await getWeb3Provider(primaryWallet)
+        const provider = await getWeb3Provider(primaryWallet!)
         const currentNetwork = await provider.getNetwork();
 
         if (currentNetwork.chainId !== parseInt(rootstockChainId, 16)) {
@@ -61,7 +61,7 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score,
             }
             }
 
-        const signer = await getSigner(primaryWallet);
+        const signer = await getSigner(primaryWallet!);
         const contractAddress = process.env.NEXT_PUBLIC_ROOTSTOCK_LENDING_ADDRESS!;
         const abi = proverSpec.abi as InterfaceAbi;
 
@@ -122,7 +122,7 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score,
           height={40}
         />
       </CardHeader>
-      <CardContent className="text-purple-200">
+      <CardContent className="text-blue-100">
         <p className="mb-4">
           Based on your credit score, you're eligible for a loan through the Rootstock network.
         </p>
@@ -259,4 +259,5 @@ interface LoanCardProps {
   maxLoan: number;
   probability: number;
   score: number;
+  keyData: any
 }

@@ -98,7 +98,7 @@ export default function TeleporterPage() {
         </div>
        <div className="flex-1 max-w-xl">
           <h1 className="text-2xl font-bold text-white mb-2">Teleporter</h1>
-          <p className="text-purple-200 text-sm mb-4">
+          <p className="text-blue-100 text-sm mb-4">
             Use this section to <strong>teleport across chains</strong> and generate a <strong>cross-chain balance proof</strong> for your address.
             <br /><br />
             We’ll collect the balances of your tokens on multiple chains and sum them up to know how much total value you hold across all networks.
