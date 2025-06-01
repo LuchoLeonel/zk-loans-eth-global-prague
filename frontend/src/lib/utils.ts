@@ -17,56 +17,60 @@ export const handleRequestBankSummary = () => {
     window.location.href = oauthUrl;
   };
 
-export const evmNetworks = [
-  {
-    blockExplorerUrls: ['https://sepolia.etherscan.io'],
-    chainId: 11155111,
-    chainName: 'Ethereum Sepolia',
-    iconUrls: ['http://localhost:3000/eth_logo.png'],
-    name: 'Sepolia Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sepolia Ether',
-      symbol: 'SEP',
-      iconUrl: 'http://localhost:3000/eth_logo.png',
+
+  const isLocal = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+  const baseImageUrl = isLocal ? 'http://localhost:3000' : 'https://zk-loans.aichallenge.fun';
+
+  export const evmNetworks = [
+    {
+      blockExplorerUrls: ['https://sepolia.etherscan.io'],
+      chainId: 11155111,
+      chainName: 'Ethereum Sepolia',
+      iconUrls: [`${baseImageUrl}/eth_logo.png`],
+      name: 'Sepolia Testnet',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Sepolia Ether',
+        symbol: 'SEP',
+        iconUrl: `${baseImageUrl}/eth_logo.png`,
+      },
+      networkId: 11155111,
+      rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/N3g083ohb92Bs8eNHAlR7'],
+      vanityName: 'Ethereum Sepolia',
     },
-    networkId: 11155111,
-    rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/N3g083ohb92Bs8eNHAlR7'],
-    vanityName: 'Ethereum Sepolia',
-  },
-  {
-    blockExplorerUrls: ['https://rootstock.blockscout.com/'],
-    chainId: 30,
-    chainName: 'Rootstock Mainnet',
-    iconUrls: ['http://localhost:3000/rootstock_logo.png'],
-    name: 'Rootstock',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Rootstock Bitcoin',
-      symbol: 'RBTC',
-      iconUrl: 'http://localhost:3000/rbtc_logo.png',
+    {
+      blockExplorerUrls: ['https://rootstock.blockscout.com/'],
+      chainId: 30,
+      chainName: 'Rootstock Mainnet',
+      iconUrls: [`${baseImageUrl}/rootstock_logo.png`],
+      name: 'Rootstock',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Rootstock Bitcoin',
+        symbol: 'RBTC',
+        iconUrl: `${baseImageUrl}/rbtc_logo.png`,
+      },
+      networkId: 30,
+      rpcUrls: ['https://public-node.rsk.co'],
+      vanityName: 'Rootstock',
     },
-    networkId: 30,
-    rpcUrls: ['https://public-node.rsk.co'],
-    vanityName: 'Rootstock',
-  },
-  {
-    blockExplorerUrls: ['https://rootstock-testnet.blockscout.com/'],
-    chainId: 31,
-    chainName: 'Rootstock Testnet',
-    iconUrls: ['http://localhost:3000/rootstock_logo.png'],
-    name: 'Rootstock Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Test RBTC',
-      symbol: 'tRBTC',
-      iconUrl: 'http://localhost:3000/rbtc_logo.png',
-    },
-    networkId: 31,
-    rpcUrls: ['https://public-node.testnet.rsk.co'],
-    vanityName: 'Rootstock Testnet',
-  }
-];
+    {
+      blockExplorerUrls: ['https://rootstock-testnet.blockscout.com/'],
+      chainId: 31,
+      chainName: 'Rootstock Testnet',
+      iconUrls: [`${baseImageUrl}/rootstock_logo.png`],
+      name: 'Rootstock Testnet',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Test RBTC',
+        symbol: 'tRBTC',
+        iconUrl: `${baseImageUrl}/rbtc_logo.png`,
+      },
+      networkId: 31,
+      rpcUrls: ['https://public-node.testnet.rsk.co'],
+      vanityName: 'Rootstock Testnet',
+    }
+  ];
 
 export const tokensToCheckTeleporter = [
   {
