@@ -70,11 +70,11 @@ export default function ClaimLoanPage() {
     );
 
     return {
-      score: 800,
+      score: 100,
       probability: 80,
       maxLoan: 100,
     }
-    
+
     return {
         score: Math.round(score),
         probability,
