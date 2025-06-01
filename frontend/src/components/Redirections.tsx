@@ -40,7 +40,8 @@ export function RedirectFromHome() {
 
   const handleEmailSummary = () => {
     setShowDialog(false);
-    handleRequestBankSummary();
+    router.replace("/email?demo=true");
+    //handleRequestBankSummary();
   };
 
   const handleSkipStep = () => {
