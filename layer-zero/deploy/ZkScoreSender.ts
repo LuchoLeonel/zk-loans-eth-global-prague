@@ -1,5 +1,4 @@
 import assert from 'assert'
-
 import { type DeployFunction } from 'hardhat-deploy/types'
 
 const contractName = 'ZkScoreSender'
@@ -13,17 +12,16 @@ const deploy: DeployFunction = async (hre) => {
 
     console.log(`Deploying ${contractName} on ${hre.network.name}...`)
 
-    const endpointV2Deployment = await hre.deployments.get('EndpointV2')
+    const endpointV2Deployment = await deployments.get('EndpointV2')
 
-    // 👇 si tenés un verifier ya desplegado, poné acá su address real
     const verifierAddress = process.env.VERIFIER_ADDRESS || '0x967e74ef3572ea6f8ae0bc3309227945613ad239'
 
     const { address } = await deploy(contractName, {
         from: deployer,
         args: [
-            endpointV2Deployment.address, // LayerZero's EndpointV2 address
-            deployer,                     // owner
-            verifierAddress               // verifier contract address
+            endpointV2Deployment.address,
+            deployer,
+            verifierAddress
         ],
         log: true,
         skipIfAlreadyDeployed: false,

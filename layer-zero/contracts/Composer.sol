@@ -5,16 +5,15 @@ import { IOAppComposer } from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
- * @title AttestationComposer
+ * @title Composer
  * @notice Stores a signature and scoreHash after cross-chain approval
  */
-contract AttestationComposer is IOAppComposer, Ownable {
+contract Composer is IOAppComposer, Ownable {
     address public immutable endpoint;
     address public immutable oApp;
 
     struct Metadata {
-        bytes signature;
-        bytes32 scoreHash;
+        bytes32 docHash; // docHash of the user's that he signs
     }
 
     mapping(address => Metadata) public userMetadata;
@@ -33,19 +32,17 @@ contract AttestationComposer is IOAppComposer, Ownable {
         address, // _executor
         bytes calldata // _extraData
     ) external payable override {
-        require(msg.sender == endpoint, "Unauthorized sender");
         require(_oApp == oApp, "Invalid source OApp");
 
-        // Suponiendo que el mensaje fue encodeado así:
-        (address user, bytes memory signature, bytes32 scoreHash) =
-            abi.decode(_message, (address, bytes, bytes32));
+        // Guess the message format is (address user, bytes32 docHash)
+        (address user, bytes32 docHash) =
+            abi.decode(_message, (address, bytes32));
 
-        userMetadata[user] = Metadata(signature, scoreHash);
-        emit MetadataStored(user, scoreHash);
+        userMetadata[user] = Metadata(docHash);
+        emit MetadataStored(user, docHash);
     }
 
-    function getMetadata(address user) external view returns (bytes memory signature, bytes32 scoreHash) {
-        Metadata memory data = userMetadata[user];
-        return (data.signature, data.scoreHash);
+    function getMetadata(address user) external view returns (bytes32 docHash) {
+        return userMetadata[user].docHash;
     }
 }
