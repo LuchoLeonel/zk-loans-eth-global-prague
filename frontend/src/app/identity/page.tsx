@@ -49,7 +49,7 @@ export default function MockIdentityScanner() {
     setScanning(false);
   };
 return (
-  <div className="min-h-screen w-full flex flex-col p-6 bg-gray-900">
+  <div className="min-h-screen w-full flex flex-col p-6">
     {/* Breadcrumb arriba */}
     <div className="flex flex-col items-center">
       <Breadcrumb active="identity" />
