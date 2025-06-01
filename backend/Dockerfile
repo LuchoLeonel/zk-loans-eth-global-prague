@@ -10,4 +10,4 @@ RUN yarn install
 COPY . .
 
 EXPOSE 8400
-CMD ["yarn", "dev"]
+CMD ["yarn", "start:dev"]
