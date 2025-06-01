@@ -121,14 +121,14 @@ export default function Background({children}: BackgroundProps) {
   }, [mousePosition])
 
   return (
-    <div className="h-screen w-full relative overflow-hidden bg-slate-950">
+    <div className="h-screen w-full relative overflow-hidden bg-slate-800">
       {/* Dynamic Background Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" style={{ opacity: 0.8 }} />
 
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-950 to-cyan-950" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-slate-700 to-cyan-700" />
 
         {/* Dynamic gradient that follows mouse */}
         <div

@@ -45,7 +45,7 @@ export function RedirectFromHome() {
 
   const handleSkipStep = () => {
     setShowDialog(false);
-    router.replace("/teleporter");
+    router.replace("/time-travel");
   };
 
   return (

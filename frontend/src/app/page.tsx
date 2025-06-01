@@ -160,25 +160,8 @@ export default function ZKLoansLanding() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-blue-800/50">
-                <div>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                    $4.2B+
-                  </div>
-                  <div className="text-sm text-blue-300 mt-1">Total Volume</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
-                    25K+
-                  </div>
-                  <div className="text-sm text-blue-300 mt-1">Active Users</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-300 to-cyan-400 bg-clip-text text-transparent">
-                    100%
-                  </div>
-                  <div className="text-sm text-blue-300 mt-1">Privacy</div>
-                </div>
+              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-blue-800/50 mb-15">
+               
               </div>
             </div>
 
