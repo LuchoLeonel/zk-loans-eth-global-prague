@@ -43,7 +43,7 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score,
         const provider = await getWeb3Provider(primaryWallet!)
         const currentNetwork = await provider.getNetwork();
 
-        if (currentNetwork.chainId !== parseInt(rootstockChainId, 16)) {
+        if (Number(currentNetwork.chainId) !== parseInt(rootstockChainId, 16)) {
             console.log('Switching to Rootstock Testnet...');
 
             try {

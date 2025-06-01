@@ -6,7 +6,7 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title AttestationComposer
- * @notice Stores a signature and scoreHash after cross-chain approval
+ * @notice Stores a signature and docHash after cross-chain approval
  */
 contract AttestationComposer is IOAppComposer, Ownable {
     address public immutable endpoint;
@@ -14,12 +14,12 @@ contract AttestationComposer is IOAppComposer, Ownable {
 
     struct Metadata {
         bytes signature;
-        bytes32 scoreHash;
+        bytes32 docHash;
     }
 
     mapping(address => Metadata) public userMetadata;
 
-    event MetadataStored(address indexed user, bytes32 scoreHash);
+    event MetadataStored(address indexed user, bytes32 docHash);
 
     constructor(address _endpoint, address _oApp) Ownable(msg.sender) {
         endpoint = _endpoint;
@@ -37,15 +37,15 @@ contract AttestationComposer is IOAppComposer, Ownable {
         require(_oApp == oApp, "Invalid source OApp");
 
         // Suponiendo que el mensaje fue encodeado así:
-        (address user, bytes memory signature, bytes32 scoreHash) =
+        (address user, bytes memory signature, bytes32 docHash) =
             abi.decode(_message, (address, bytes, bytes32));
 
-        userMetadata[user] = Metadata(signature, scoreHash);
-        emit MetadataStored(user, scoreHash);
+        userMetadata[user] = Metadata(signature, docHash);
+        emit MetadataStored(user, docHash);
     }
 
-    function getMetadata(address user) external view returns (bytes memory signature, bytes32 scoreHash) {
+    function getMetadata(address user) external view returns (bytes memory signature, bytes32 docHash) {
         Metadata memory data = userMetadata[user];
-        return (data.signature, data.scoreHash);
+        return (data.signature, data.docHash);
     }
 }
