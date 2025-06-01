@@ -10,16 +10,31 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import proverSpec from "@/contracts/ZkLending.json";
 import { getWeb3Provider,getSigner, } from '@dynamic-labs/ethers-v6'
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ethers, InterfaceAbi, BrowserProvider } from "ethers";
 import { rootstockTestnet } from "viem/chains";
 
 
-export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score }) => {
+export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score, keyData }) => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const rootstockChainId = "0x1254";
   const { primaryWallet,  } = useDynamicContext();
   const switchNetwork = useSwitchNetwork();
+
+
+  const mockPassportData = {
+    documentType: 'Passport',
+    documentNumber: 'X1234567',
+    name: 'John',
+    lastName: 'Doe'
+  };
+
+  const mockedSignedDocument = {
+    hash: "0xa12b9fe73f1f6d2db57a5e3d1d7e40816f33b71f514ae9a0873db61753f5ce3f",
+    signature: "0x1c5f6d4f7d7e40b9f23d99ab146d0c32a46e03d0f9d6a72f79b02b8faac4d92138574d1f264d1c9b3fd4e5d7f3bba1614a11f53fbd2d6abfde3e3ef8c97f1cfb1b"
+  }
 
   async function handleClaimLoan() {
     try {
@@ -59,6 +74,31 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score 
 
         const receipt = await tx.wait();
         console.log('Transaction confirmed!', receipt);
+
+
+        await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/score/createLoan`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                address: keyData.address,
+                hash: mockedSignedDocument.hash,
+                signature: mockedSignedDocument.signature,
+                legalDocument: 'Legal Document binding the person to repay the loan.',
+            }),
+        })
+        .then((res) => {
+            if (!res.ok) throw new Error('Failed to save loan in backend');
+            return res.json();
+        })
+        .then((data) => {
+            console.log('✅ Backend response:', data);
+        })
+        .catch((err) => {
+            console.error('❌ Error saving to backend:', err);
+            alert('Error saving to backend. Check console.');
+        });
 
     } catch (error) {
         console.error('Error claiming loan:', error);
@@ -103,18 +143,51 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score 
               <BadgeDollarSign className="w-6 h-6 mr-2" />
               <span className="font-bold">Max Loan Eligible</span>
             </div>
-            <div className="text-4xl font-extrabold">${maxLoan} USDC</div>
+            <div className="text-4xl font-extrabold">
+            ${(maxLoan / 1000).toFixed(2)} rBTC
+            </div>
             <div className="mt-1 text-sm">Fixed rate as per contract</div>
           </div>
         </div>
         <div className="flex justify-center">
-          <Button
-            onClick={handleClaimLoan}
-            className="cursor-pointer bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg"
-          >
-            Claim Loan
-          </Button>
-        </div>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button className="cursor-pointer bg-black hover:bg-gray-800 text-white font-semibold px-6 py-2 rounded-lg">
+                  Claim Loan
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-lg bg-white text-black">
+                <DialogHeader>
+                  <DialogTitle>Loan Agreement</DialogTitle>
+                  <DialogDescription>
+                    Please read and accept the legal terms before proceeding.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="mt-4 text-sm max-h-60 overflow-y-auto">
+                  <p>
+                    This loan agreement is made between <strong>{mockPassportData.name} {mockPassportData.lastName}</strong> (Document: {mockPassportData.documentType} {mockPassportData.documentNumber}) and ZK Loans.
+                  </p>
+                  <p className="mt-2">
+                    By claiming the loan, you agree to the repayment terms, interest rates, and penalties for default as outlined in the official contract. The funds will be disbursed on-chain to the wallet connected to this transaction.
+                  </p>
+                  <p className="mt-2">
+                    Please ensure that all your personal information is correct and that you understand the responsibilities associated with this loan.
+                  </p>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <Button
+                    onClick={() => {
+                      setOpen(false);
+                      handleClaimLoan(); // Llamada real a tu función
+                    }}
+                    className="bg-black hover:bg-gray-800 text-white cursor-pointer"
+                  >
+                    I Accept & Claim Loan
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
       </CardContent>
     </Card>
   );
@@ -124,6 +197,7 @@ export const LoanCard: React.FC<LoanCardProps> = ({ maxLoan, probability, score 
 export default function ClaimLoanPage() {
   const { primaryWallet } = useDynamicContext();
   const [loanScore, setLoanScore] = useState<any>(null);
+  const [keyData, setKycData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -141,6 +215,13 @@ export default function ClaimLoanPage() {
           probability: data.probability,
           maxLoan: data.maxLoan,
         });
+        setKycData({
+            address: data.address,
+            name: data.name,
+            lastName: data.lastName,
+            documentType: data.documentType,
+            documentNumber: data.documentNumber,
+        })
       } catch (error) {
         console.error('Error fetching loan score:', error);
         setLoanScore(null);
@@ -164,6 +245,7 @@ export default function ClaimLoanPage() {
           maxLoan={loanScore.maxLoan}
           probability={loanScore.probability}
           score={loanScore.score}
+          keyData={keyData}
         />
       ) : (
         <div>No loan score available for this address.</div>

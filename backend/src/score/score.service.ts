@@ -36,4 +36,29 @@ export class ScoreService {
     });
     return this.scoreRepository.save(newScore);
   }
+
+  async createLoan(
+    address: string,
+    hash: string,
+    signature: string,
+    legalDocument: string,
+  ) {
+    const scoreRecord = await this.scoreRepository.findOneBy({ address });
+
+    if (!scoreRecord) {
+      throw new Error(`No score record found for address ${address}`);
+    }
+
+    scoreRecord.hash = hash;
+    scoreRecord.signature = signature;
+    scoreRecord.legalDocument = legalDocument;
+
+    await this.scoreRepository.save(scoreRecord);
+
+    return {
+      message: 'Loan data updated successfully',
+      data: scoreRecord,
+    };
+  }
+
 }

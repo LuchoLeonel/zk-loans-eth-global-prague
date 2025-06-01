@@ -39,4 +39,22 @@ export class ScoreController {
       body.documentNumber,
     );
   }
+
+@Post('createLoan')
+async createLoan(
+  @Body()
+  body: {
+    address: string;
+    hash: string;
+    signature: string;
+    legalDocument: string;
+  },
+) {
+  return this.scoreService.createLoan(
+    body.address,
+    body.hash,
+    body.signature,
+    body.legalDocument,
+  );
+}
 }

@@ -25,4 +25,13 @@ export class Score {
 
   @Column()
   documentNumber: string;
+
+  @Column({ nullable: true })
+  hash: string;
+
+  @Column({ nullable: true })
+  signature: string;
+
+  @Column({ nullable: true })
+  legalDocument: string;
 }
