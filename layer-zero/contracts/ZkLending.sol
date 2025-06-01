@@ -3,8 +3,9 @@ pragma solidity ^0.8.22;
 
 import { OApp, Origin } from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { OAppOptionsType3 } from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OAppOptionsType3.sol";
 
-contract ZkLending is Ownable, OApp  {
+contract ZkLending is Ownable, OApp, OAppOptionsType3  {
     uint256 public minScore;
 
     mapping(address => bool) public hasWithdrawn;
@@ -24,21 +25,8 @@ contract ZkLending is Ownable, OApp  {
         address,
         bytes calldata
     ) internal override {
-        (address user, uint256 score) = abi.decode(payload, (address, uint256));
-        require(score >= minScore, "Score too low");
-
-        uint256 loanAmount;
-        if (score >= 800) {
-            loanAmount = 0.05 ether;
-        } else if (score >= 700) {
-            loanAmount = 0.02 ether;
-        } else if (score >= 600) {
-            loanAmount = 0.01 ether;
-        } else {
-            revert("Score not eligible");
-        }
-
-        approvedLoanAmount[user] = loanAmount;
+        (address user, uint256 maxLoan) = abi.decode(payload, (address, uint256));
+        approvedLoanAmount[user] = maxLoan;
     }
 
     function withdrawLoan() external {

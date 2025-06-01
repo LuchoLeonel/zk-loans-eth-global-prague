@@ -9,5 +9,5 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 8500
+EXPOSE 8400
 CMD ["yarn", "dev"]

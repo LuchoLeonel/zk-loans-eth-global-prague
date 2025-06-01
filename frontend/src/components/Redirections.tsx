@@ -6,27 +6,47 @@ import { Button } from "@/components/ui/button"
 import { Mail, SkipForward } from "lucide-react"
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core'
 import { handleRequestBankSummary } from "@/lib/utils"
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+
 
 export function RedirectFromHome() {
-  const router = useRouter()
-  const isLoggedIn = useIsLoggedIn()
-  const [showDialog, setShowDialog] = useState(false)
+  const router = useRouter();
+  const isLoggedIn = useIsLoggedIn();
+  const { primaryWallet } = useDynamicContext();
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setShowDialog(true)
-    }
-  }, [isLoggedIn])
+    const checkScore = async () => {
+      if (isLoggedIn && primaryWallet?.address) {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/score/${primaryWallet.address}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.score) {
+              router.replace("/loans");
+              return;
+            }
+          }
+          setShowDialog(true);
+        } catch (error) {
+          console.error("Error checking score:", error);
+          setShowDialog(true);
+        }
+      }
+    };
+
+    checkScore();
+  }, [isLoggedIn, primaryWallet?.address, router]);
 
   const handleEmailSummary = () => {
-    setShowDialog(false)
+    setShowDialog(false);
     handleRequestBankSummary();
-  }
+  };
 
   const handleSkipStep = () => {
-    setShowDialog(false)
-    router.replace("/teleporter")
-  }
+    setShowDialog(false);
+    router.replace("/teleporter");
+  };
 
   return (
     <Dialog open={showDialog} onOpenChange={setShowDialog}>
@@ -49,7 +69,7 @@ export function RedirectFromHome() {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 

@@ -5,14 +5,23 @@ import { useProofStore } from "@/hooks/useProofStore";
 import { CheckCircle, User, Mail, Clock, Zap, BadgeDollarSign, Target, ShieldCheck } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import { RedirectFromForm } from "@/components/Redirections";
+import { ethers, InterfaceAbi, BrowserProvider } from "ethers";
+import proverSpec from "@/contracts/ZkScoreSender.json";
+import { useDynamicContext, useRpcProviders } from '@dynamic-labs/sdk-react-core';
+import { getWeb3Provider,getSigner, } from '@dynamic-labs/ethers-v6'
+import { useRouter } from 'next/navigation';
+import { EndpointId } from '@layerzerolabs/lz-definitions'
+import {Options} from '@layerzerolabs/lz-v2-utilities';
 
 export default function ClaimLoanPage() {
   const [dotCount, setDotCount] = useState(0);
-  const [loading, setLoading] = useState(0);
+  const [loading, setLoading] = useState(false);
   const emailProof = useProofStore((state) => state.emailProof);
   const timeTravelProof = useProofStore((state) => state.timeTravelProof);
   const teleportProof = useProofStore((state) => state.teleportProof);
   const identityProof = useProofStore((state) => state.identityProof);
+  const { user, primaryWallet } = useDynamicContext();
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => setDotCount((prev) => (prev + 1) % 4), 300);
@@ -68,6 +77,76 @@ export default function ClaimLoanPage() {
     }, [emailProof, timeTravelProof, teleportProof]);
 
 
+  async function handleSaveScoring() {
+      try {
+          setLoading(true);
+
+          const signer = await getSigner(primaryWallet)
+          const contractAddress = process.env.NEXT_PUBLIC_ETH_SEPOLIA_SCORING_ADDRESS!;
+          const abi = proverSpec.abi as InterfaceAbi;
+
+          const contract = new ethers.Contract(contractAddress, abi, signer);
+
+          const proof = timeTravelProof[0];
+          const claimer = timeTravelProof[1];
+          const average = timeTravelProof[2];
+          const enid = EndpointId.ROOTSTOCK_V2_TESTNET;
+
+          const options = Options.newOptions().addExecutorLzReceiveOption(80000).toHex();
+
+          const tx = await contract.submitScore(
+              loanScore.score,
+              loanScore.probability,
+              loanScore.maxLoan,
+              proof,
+              claimer,
+              average,
+              enid,
+              options
+          );
+
+          console.log("Transaction sent:", tx.hash);
+          await tx.wait();
+          console.log("Transaction confirmed!");
+
+            await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/score`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                address: claimer,
+                score: loanScore.score,
+                probability: loanScore.probability,
+                maxLoan: loanScore.maxLoan,
+                firstName: 'John',            // <-- estos podés armarlos dinámicamente si tenés los datos
+                lastName: 'Doe',
+                documentType: 'Passport',
+                documentNumber: 'A12345678',
+              }),
+            })
+            .then((res) => {
+              if (!res.ok) throw new Error('Failed to save score in backend');
+              return res.json();
+            })
+            .then((data) => {
+              console.log('Backend response:', data);
+            })
+            .catch((err) => {
+              console.error('Error saving to backend:', err);
+              alert('Error saving to backend. Check console.');
+            });
+
+          router.push("/loans");
+      } catch (error) {
+          console.error("Error submitting score:", error);
+          alert("Error submitting score. Check console.");
+      } finally {
+          setLoading(false);
+      }
+  }
+
+
   return (
     <div className="min-h-screen max-h-screen overflow-auto scrollbar-thin scrollbar-thumb-purple-600 p-4 max-w-5xl mx-auto space-y-6">
       <RedirectFromForm />
@@ -75,7 +154,7 @@ export default function ClaimLoanPage() {
 
       <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-900/30 to-pink-900/20 border border-purple-500/30 backdrop-blur-xl shadow-md">
         <h1 className="text-3xl font-bold text-white mb-2 flex flex-row justify-center items-center">
-          <Target className="w-8 h-8 mr-2" /> Loan Summary
+          <Target className="w-8 h-8 mr-2" /> Credit Score
         </h1>
         <p className="text-purple-200 text-sm mb-4">
           We’ve analyzed your proofs and calculated your <strong>credit score</strong>.
@@ -109,11 +188,11 @@ export default function ClaimLoanPage() {
             {loanScore.score >= 50 ? (
               <div className="flex justify-center items-center">
               <button
-                onClick={() => {}}
+                onClick={handleSaveScoring}
                 className={`px-6 py-2 rounded-lg font-semibold text-white transition-all ${'bg-purple-600 hover:bg-purple-700 cursor-pointer'}`}
               >
                 {loading
-                  ? `Generating Proof${".".repeat(dotCount)}`
+                  ? `Creating Scoring${dotCount > 0 ? ".".repeat(dotCount) : " "}`
                   : (
                     <>
                       Generate Cross Chain Scoring
