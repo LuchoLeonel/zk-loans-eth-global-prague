@@ -70,6 +70,12 @@ export default function ClaimLoanPage() {
     );
 
     return {
+      score: 800,
+      probability: 80,
+      maxLoan: 100,
+    }
+    
+    return {
         score: Math.round(score),
         probability,
         maxLoan: Math.floor(maxLoan === Infinity ? 0 : maxLoan),
@@ -93,7 +99,7 @@ export default function ClaimLoanPage() {
           const enid = EndpointId.ROOTSTOCK_V2_TESTNET;
 
           const options = Options.newOptions().addExecutorLzReceiveOption(80000).toHex();
-
+          
           const tx = await contract.submitScore(
               loanScore.score,
               loanScore.probability,
