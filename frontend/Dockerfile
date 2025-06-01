@@ -16,7 +16,7 @@ ENV NEXT_PUBLIC_DYNAMIC_ENV_ID=f7582e95-eb3d-4beb-bff1-6e94004f0000
 
 
 ENV NEXT_PUBLIC_BACKEND_URI="https://api.zk-loans.aichallenge.fun"
-ENV NEXT_PUBLIC_GOOGLE_REDIRECT_URI="https://api.zk-loans.aichallenge.fun/email"
+ENV NEXT_PUBLIC_GOOGLE_REDIRECT_URI="https://zk-loans.aichallenge.fun/email"
 ENV NEXT_PUBLIC_DYNAMIC_ENV_ID="7c0129ea-c276-419f-a158-a5ba44df52a3"
 
 ARG NEXT_PUBLIC_OPENAI_API_KEY
