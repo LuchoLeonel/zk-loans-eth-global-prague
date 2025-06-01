@@ -107,9 +107,15 @@ We implemented LayerZero’s omnichain messaging (OApp) to transmit proof data a
 
 ## 👥 Team
 
-Luciano Leonel Carreño - Full Stack Developer and Lawyer
+Luciano Leonel Carreño — Full Stack Developer and Lawyer
 
-Fabian Edwin Diaz Viera - Blockchain Developer
+With 4 years of experience as a full stack developer and Rust engineer, Luciano is passionate about privacy, zk proofs, and has worked with Verifiable Credentials as well as Bitcoin Core in Rust.
+
+Fabian Edwin Diaz Viera — Blockchain Developer
+
+With 3 years of experience as a developer, Fabian specializes in Blockchain and has worked on Solana-based projects.
+
+Together, we have participated in multiple hackathons, combining our technical skills to build innovative solutions focused on blockchain, privacy, and zero-knowledge proofs.
 
 ---
 
