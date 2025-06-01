@@ -47,7 +47,6 @@ NEXT_PUBLIC_VLAYER_API_TOKEN=
 
 ```bash
 cd backend
-cp .env.example .env
 yarn install
 yarn start:dev
 ```
@@ -73,8 +72,8 @@ You should see ZK-Loans live!
 
 We deployed smart contracts on Rootstock to handle loan disbursement, verify user attestations, and manage on-chain RBTC transfers. The system ensures at least two on-chain testnet transactions, meeting qualification requirements.
 
-**Contract Address:**  
-`NEXT_PUBLIC_ROOTSTOCK_LENDING_ADDRESS="0x31e0A37bda916C0098be8600e6f156D877cb4BA8"`
+**Rootstock Lending Contract Address:**  
+`0x31e0A37bda916C0098be8600e6f156D877cb4BA8`
 
 The contract is located in the `vlayer` directory.
 
@@ -100,23 +99,17 @@ These contracts are organized in separate subfolders within the `vlayer-contract
 
 We implemented LayerZero’s omnichain messaging (OApp) to transmit proof data and cross-chain reputation to the Base Sepolia smart contract. This leverages horizontal composability by triggering follow-up messages on Rootstock after reputation validation.
 
-
 **Contracts:**  
-- `NEXT_PUBLIC_ROOTSTOCK_LENDING_ADDRESS="0x31e0A37bda916C0098be8600e6f156D877cb4BA8"`  
-- `NEXT_PUBLIC_ETH_SEPOLIA_SCORING_ADDRESS="0xFbC66bD8466f7B7628fD32F8a8C07f3976c73979"`
+- Rootstock Lending: `0x31e0A37bda916C0098be8600e6f156D877cb4BA8`  
+- Ethereum Sepolia Scoring: `0xFbC66bD8466f7B7628fD32F8a8C07f3976c73979`
 
 ---
-
-
 
 ## 👥 Team
 
 Luciano Leonel Carreño - Full Stack Developer and Lawyer
 
-
 Fabian Edwin Diaz Viera - Blockchain Developer
-
-
 
 ---
 
